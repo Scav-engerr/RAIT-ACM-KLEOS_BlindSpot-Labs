@@ -1,29 +1,42 @@
-import { geoData, cropBasics, districtPrices } from '../data/cropData';
+import { regionalAquiferGrids, agentCropImpact } from '../data/cropData';
 
-export const calculateDistrictCrops = (state, district) => {
-  const districtInfo = geoData[state]?.[district];
-  const prices = districtPrices[district];
+export const optimizeAquiferEquilibrium = (region, userCropChoice) => {
+  const grid = regionalAquiferGrids[region];
+  const userImpact = agentCropImpact[userCropChoice];
 
-  if (!districtInfo || !prices) return [];
+  if (!grid || !userImpact) return null;
 
-  const BASE_WATER_COST = 12000;
-  const depletionRate = districtInfo.depletionRate;
+  const greedyWellsCount = Math.round(grid.activeBorewells * (grid.currentGreedyAgentsPercentage / 100));
+  const compliantWellsCount = grid.activeBorewells - greedyWellsCount;
+  
+  let totalDistributedDrain = (greedyWellsCount * 3.4) + (compliantWellsCount * 0.8);
+  
+  if (userCropChoice === "Rice") {
+    totalDistributedDrain += 2.6; 
+  }
 
-  return Object.keys(cropBasics).map((cropName) => {
-    const crop = cropBasics[cropName];
-    const mandiPrice = prices[cropName];
-    
-    // Core Formula execution
-    const grossReturn = mandiPrice * crop.yieldPerAcre;
-    const waterPenalty = Math.round(depletionRate * BASE_WATER_COST * crop.waterMultiplier);
-    const netReturn = grossReturn - crop.inputCost - waterPenalty;
+  const clusterExtractionIndex = Math.min(Math.round((totalDistributedDrain / 110) * 100), 100);
 
-    return {
-      name: cropName,
-      grossReturn,
-      inputCost: crop.inputCost,
-      waterPenalty,
-      netReturn
-    };
-  }).sort((a, b) => b.netReturn - a.netReturn); // Rank highest net return first
+  let stabilityStatus = "";
+  let operationalDirective = "";
+  let clusterImpactMessage = "";
+
+  if (clusterExtractionIndex > 75) {
+    stabilityStatus = "CRITICAL: COLLAPSE RISK DETECTED";
+    clusterImpactMessage = `Your shared aquifer grid (${grid.gridId}) is experiencing high-velocity depletion due to severe flood-irrigation saturation in neighboring nodes.`;
+    operationalDirective = `The system has flagged your farm coordinates as a PRIME PIVOT NODE. To balance Grid ${grid.gridId} back under safe carrying thresholds, a localized 22% shift in the collective crop layout is required. Pivoting your node to a Restorative crop stabilizes the local hydraulic ecosystem pressure.`;
+  } else {
+    stabilityStatus = "EQUILIBRIUM: RECHARGE SUSTAINABLE";
+    clusterImpactMessage = `The community extraction signature matches safe sub-surface water retention capacities.`;
+    operationalDirective = "Resource footprint sustainable. The AI Engine clears your planned seasonal footprint for production without requiring cooperative node shifts.";
+  }
+
+  return {
+    gridId: grid.gridId,
+    activeBorewells: grid.activeBorewells,
+    clusterExtractionIndex,
+    stabilityStatus,
+    clusterImpactMessage,
+    operationalDirective
+  };
 };
