@@ -1,0 +1,113 @@
+{
+  "states": ["Punjab", "Haryana", "Rajasthan"],
+  "districts": [
+    {
+      "id": "ludhiana",
+      "name": "Ludhiana",
+      "nameHi": "लुधियाना",
+      "state": "Punjab",
+      "riskLevel": "Critical",
+      "depletionRate": 0.9,
+      "yearsToFailure": 15,
+      "mandiPrices": {
+        "rice": 2300,
+        "wheat": 2275,
+        "bajra": 2500,
+        "maize": 2090,
+        "cotton": 6500,
+        "moong": 8500,
+        "sugarcane": 340
+      }
+    },
+    {
+      "id": "sangrur",
+      "name": "Sangrur",
+      "nameHi": "संगरूर",
+      "state": "Punjab",
+      "riskLevel": "Critical",
+      "depletionRate": 1.0,
+      "yearsToFailure": 13,
+      "mandiPrices": {
+        "rice": 2280,
+        "wheat": 2260,
+        "bajra": 2480,
+        "maize": 2050,
+        "cotton": 6400,
+        "moong": 8400,
+        "sugarcane": 335
+      }
+    },
+    {
+      "id": "hisar",
+      "name": "Hisar",
+      "nameHi": "हिसार",
+      "state": "Haryana",
+      "riskLevel": "High",
+      "depletionRate": 0.7,
+      "yearsToFailure": 20,
+      "mandiPrices": {
+        "rice": 2290,
+        "wheat": 2270,
+        "bajra": 2550,
+        "maize": 2100,
+        "cotton": 6600,
+        "moong": 8600,
+        "sugarcane": 345
+      }
+    },
+    {
+      "id": "karnal",
+      "name": "Karnal",
+      "nameHi": "करनाल",
+      "state": "Haryana",
+      "riskLevel": "High",
+      "depletionRate": 0.6,
+      "yearsToFailure": 22,
+      "mandiPrices": {
+        "rice": 2310,
+        "wheat": 2285,
+        "bajra": 2520,
+        "maize": 2080,
+        "cotton": 6450,
+        "moong": 8450,
+        "sugarcane": 342
+      }
+    },
+    {
+      "id": "ganganagar",
+      "name": "Ganganagar",
+      "nameHi": "गंगानगर",
+      "state": "Rajasthan",
+      "riskLevel": "Critical",
+      "depletionRate": 0.8,
+      "yearsToFailure": 16,
+      "mandiPrices": {
+        "rice": 2250,
+        "wheat": 2260,
+        "bajra": 2600,
+        "maize": 2060,
+        "cotton": 6550,
+        "moong": 8550,
+        "sugarcane": 338
+      }
+    },
+    {
+      "id": "jaipur",
+      "name": "Jaipur",
+      "nameHi": "जयपुर",
+      "state": "Rajasthan",
+      "riskLevel": "Moderate",
+      "depletionRate": 0.4,
+      "yearsToFailure": 35,
+      "mandiPrices": {
+        "rice": 2240,
+        "wheat": 2255,
+        "bajra": 2580,
+        "maize": 2040,
+        "cotton": 6480,
+        "moong": 8480,
+        "sugarcane": 332
+      }
+    }
+  ]
+}
