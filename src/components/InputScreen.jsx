@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { getDistrictData, getCropMetrics } from '../data/cropData';
+
+const regionalDatabase = {
+  districts: {
+    "Ludhiana West": { soil: "Alluvial Matrix", wells: 1420, baseLoad: 50 },
+    "Sangrur Central": { soil: "Heavy Clay Loam", wells: 1840, baseLoad: 55 },
+    "Kurukshetra North": { soil: "Sandy Loam Matrix", wells: 980, baseLoad: 45 },
+    "Karnal Basin": { soil: "Alluvial Silt", wells: 1120, baseLoad: 48 }
+  },
+  crops: {
+    "Paddy / Rice": { waterDemand: "Critical / Flood", loadFactor: 50 },
+    "Sugarcane": { waterDemand: "High Perennial", loadFactor: 40 },
+    "Cotton": { waterDemand: "Moderate Seasonal", loadFactor: 25 }
+  }
+};
 
 export default function InputScreen({ onOptimize }) {
   const [selectedState, setSelectedState] = useState('');
@@ -7,12 +20,15 @@ export default function InputScreen({ onOptimize }) {
   const [selectedCrop, setSelectedCrop] = useState('');
 
   const handleOptimizeClick = () => {
-    if (!selectedDistrict || !selectedCrop) return;
+    const metrics = regionalDatabase.districts[selectedDistrict];
+    const cropMetrics = regionalDatabase.crops[selectedCrop];
 
-    const metrics = getDistrictData(selectedDistrict);
-    const cropMetrics = getCropMetrics(selectedCrop);
+    // Safety guard clause: Only run if data exists to prevent crashes
+    if (!metrics || !cropMetrics) {
+      console.warn("Missing metrics for selection:", selectedDistrict, selectedCrop);
+      return;
+    }
 
-    // Build the recommendation text customized for the district
     const recommendationText = `To prevent complete aquifer collapse in ${selectedDistrict}, the systemic directive recommends transitioning from high-volume ${selectedCrop} flood irrigation over to leguminous Moong (Mung Bean). This action reduces critical cluster extraction rates immediately while securing a localized net profit increase at regional mandis.`;
 
     onOptimize({
@@ -31,7 +47,7 @@ export default function InputScreen({ onOptimize }) {
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* STATE SELECTION DROP DOWN */}
+        {/* STATE SELECTION */}
         <div>
           <label className="block text-sm md:text-base font-bold text-slate-700 mb-2">
             Select State Region
@@ -47,7 +63,7 @@ export default function InputScreen({ onOptimize }) {
           </select>
         </div>
 
-        {/* DISTRICT SELECTION DROP DOWN */}
+        {/* DISTRICT SELECTION */}
         <div>
           <label className="block text-sm md:text-base font-bold text-slate-700 mb-2">
             Select Aquifer District Grid
@@ -74,7 +90,7 @@ export default function InputScreen({ onOptimize }) {
           </select>
         </div>
 
-        {/* CROP SELECTION DROP DOWN */}
+        {/* CROP SELECTION */}
         <div>
           <label className="block text-sm md:text-base font-bold text-slate-700 mb-2">
             Intended Crop Vector
@@ -92,12 +108,11 @@ export default function InputScreen({ onOptimize }) {
         </div>
       </div>
 
-      {/* BIG HIGH-VISIBILITY BUTTON */}
       <div className="pt-4 border-t border-slate-100 flex justify-end">
         <button 
           onClick={handleOptimizeClick}
           disabled={!selectedDistrict || !selectedCrop}
-          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-3.5 rounded-lg shadow-md transition-all duration-200 disabled:opacity-40 disabled:hover:bg-blue-600"
+          className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-3.5 rounded-lg shadow-md transition-all duration-200 disabled:opacity-40"
         >
           Execute Matrix Optimization
         </button>
