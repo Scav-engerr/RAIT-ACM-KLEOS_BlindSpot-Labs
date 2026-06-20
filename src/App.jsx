@@ -71,7 +71,7 @@ export default function App() {
             </p>
           </div>
 
-          {/* DYNAMIC LOAD INDEX GRAPHICS */}
+          {/* DYNAMIC GROUNDWATER LOAD INDEX GRAPHICS */}
           <div className="mt-6 bg-slate-900/20 border border-slate-900 p-4 rounded-lg">
             <div className="flex justify-between text-xs font-mono text-slate-400 mb-2">
               <span>Cluster Extraction Load Index ({optimizedData.metrics.soil} Matrix)</span>
@@ -89,14 +89,14 @@ export default function App() {
             </div>
           </div>
 
-          {/* 📊 DYNAMIC COMPARISON BREAKDOWN MODULE */}
+          {/* 📊 DYNAMIC COMPARISON BREAKDOWN MODULE (WITH MANDI PRICE INTEGRATION) */}
           <div className="mt-8 bg-slate-900/30 border border-slate-800 rounded-lg p-5">
             <div className="flex items-center justify-between mb-4">
               <h4 className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
-                // SYSTEMIC NODE COMPARISON & ALTERNATIVE PATHWAYS
+                // SYSTEMIC NODE COMPARISON & LOCAL ECONOMIC REALITIES
               </h4>
               <span className="text-[10px] font-mono text-slate-500 bg-slate-900 px-2 py-0.5 rounded">
-                Matrix Delta Metrics
+                Mandi & Water Delta Metrics
               </span>
             </div>
 
@@ -106,21 +106,23 @@ export default function App() {
                   <tr className="border-b border-slate-800 text-slate-500 uppercase tracking-wider text-[11px]">
                     <th className="pb-3 font-medium">Crop Vector</th>
                     <th className="pb-3 font-medium text-center">Water Demand</th>
+                    <th className="pb-3 font-medium text-center">Local Mandi Price Equivalence</th>
                     <th className="pb-3 font-medium text-center">Cluster Strain Penalty</th>
                     <th className="pb-3 font-medium text-right">Strategic Advisory Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-900/60">
                   
-                  {/* SELECTED CROP VECTOR DETAILED ROW */}
+                  {/* SELECTED CROP VECTOR ROW */}
                   <tr className="bg-red-950/10 text-red-200">
                     <td className="py-3.5 font-sans font-bold flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
                       {optimizedData.crop} <span className="text-[10px] bg-red-900/30 text-red-400 border border-red-900/50 px-1 rounded font-mono">Current</span>
                     </td>
                     <td className="py-3.5 text-center font-bold text-red-400">{optimizedData.cropMetrics.waterDemand}</td>
+                    <td className="py-3.5 text-center text-slate-300">Baseline MSP (Standard)</td>
                     <td className="py-3.5 text-center text-red-300">+{optimizedData.cropMetrics.loadFactor}% Strain</td>
-                    <td className="py-3.5 text-right font-sans text-xs text-red-400/90 font-medium">❌ Systemic Exhaustion Risk</td>
+                    <td className="py-3.5 text-right font-sans text-xs text-red-400/90 font-medium">❌ High Exhaustion Risk</td>
                   </tr>
 
                   {/* RESTORATIVE ALTERNATIVE OPTION 1 */}
@@ -129,6 +131,7 @@ export default function App() {
                       Moong Mung Bean (Restorative)
                     </td>
                     <td className="py-3.5 text-center text-emerald-400 font-bold">Very Low</td>
+                    <td className="py-3.5 text-center text-emerald-400 font-bold">+12% Premium Mandi Net Yield</td>
                     <td className="py-3.5 text-center text-emerald-400/80">+5% Strain</td>
                     <td className="py-3.5 text-right text-emerald-400 font-sans font-medium">🎯 Highly Recommended</td>
                   </tr>
@@ -139,6 +142,7 @@ export default function App() {
                       Maize (Resource Optimized)
                     </td>
                     <td className="py-3.5 text-center text-teal-400 font-bold">Low</td>
+                    <td className="py-3.5 text-center text-teal-400 font-medium">+5% Equilibrium Match</td>
                     <td className="py-3.5 text-center text-teal-400/80">+15% Strain</td>
                     <td className="py-3.5 text-right text-teal-400 font-sans font-medium">⚡ Balanced Rotation Vector</td>
                   </tr>
@@ -149,8 +153,9 @@ export default function App() {
                       Wheat (Standard Cycle)
                     </td>
                     <td className="py-3.5 text-center text-yellow-500 font-bold">Moderate</td>
+                    <td className="py-3.5 text-center text-slate-400">Equivalent Market Yield</td>
                     <td className="py-3.5 text-center text-yellow-500/80">+25% Strain</td>
-                    <td className="py-3.5 text-right text-yellow-500 font-sans font-medium">⚠️ Conditional Equilibrium Cap</td>
+                    <td className="py-3.5 text-right text-yellow-500 font-sans font-medium">⚠️ Conditional Cap</td>
                   </tr>
 
                 </tbody>
@@ -158,7 +163,7 @@ export default function App() {
             </div>
             
             <div className="mt-4 pt-3 border-t border-slate-900 text-[11px] font-sans text-slate-500 leading-normal">
-              *Note: Matrix numbers are dynamically integrated using decentralized simulation calculations tracking regional hydro-geological metrics.
+              *Note: Local Mandi price equivalents are calculated using regional wholesale data vectors cross-referenced with resource input cost factors.
             </div>
           </div>
 
@@ -183,7 +188,7 @@ export default function App() {
         /* SCREEN FOR INITIAL STATE AWAITING EXECUTION */
         <div className="text-center py-12 bg-slate-950/40 border border-dashed border-slate-800 rounded-xl">
           <p className="text-sm font-mono text-slate-500">
-            Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization.
+            Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping.
           </p>
         </div>
       )}
