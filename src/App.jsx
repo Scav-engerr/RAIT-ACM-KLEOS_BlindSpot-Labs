@@ -1,14 +1,4 @@
-How about we introduce a **Simulated Water Bank & Carbon Credit Estimator**?
-Instead of adding a heavy library or complex chart, we can keep the code incredibly light and fast by using native Tailwind components, but introduce a highly innovative concept that makes the app look way ahead of its time.
-### The Innovation: The Eco-Credit Incentive Matrix
-When a user selects a highly unsustainable crop (like Paddy/Rice) and switches to an AI-recommended crop (like Moong Mung Bean), the system calculates the **Water Saved (in Liters)** and converts that into **Carbon/Eco Credits earned** right on the spot.
-Here is how we can implement this feature beautifully and simply inside src/App.jsx:
- 1. **The Math (Pure Logic)**: If the user changes from a high-water crop to Moong, we calculate:
-   
- 2. **The UI**: A clean, modern **Incentive Badge Panel** that flashes green when you match the AI recommendation, showing the user exactly how much money/credits they generate by saving the aquifer.
-### Updated src/App.jsx with the Eco-Credit Engine
-Replace your src/App.jsx with this updated version to activate the incentive calculator:
-```jsx
+
 import React, { useState } from 'react';
 import InputScreen from './components/InputScreen';
 
@@ -334,6 +324,3 @@ export default function App() {
   );
 }
 
-```
-This adds immediate financial visual value without complicating things or breaking your current components. Ready to test!
-}
