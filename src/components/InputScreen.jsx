@@ -38,7 +38,7 @@ export default function InputScreen({ onOptimize }) {
 
   return (
     <div className="p-6 bg-slate-950 rounded-xl border border-slate-800 text-slate-100">
-      <h2 className="text-sm font-mono tracking-wider text-cyan-400 uppercase mb-4">// Step 1: Calibrate Node Parameters</h2>
+      <h2 className="text-sm font-mono tracking-wider text-cyan-400 uppercase mb-4">Step 1: Calibrate Node Parameters</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
