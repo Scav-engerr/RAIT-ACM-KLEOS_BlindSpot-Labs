@@ -17,7 +17,8 @@ const translations = {
     tableMandi: "Local Mandi Price Equivalence",
     tableStrain: "Cluster Strain Penalty",
     tableStatus: "Strategic Advisory Status",
-    currentBadge: "Current",
+    currentBadge: "Current Choice",
+    recBadge: "AI Recommended",
     riskHigh: "❌ High Exhaustion Risk",
     recMoong: "🎯 Highly Recommended",
     recMaize: "⚡ Balanced Rotation Vector",
@@ -25,7 +26,8 @@ const translations = {
     mandiNote: "*Note: Local Mandi price equivalents are calculated using regional wholesale data vectors cross-referenced with resource input cost factors.",
     footerWells: "Tracked Interlocked Wells",
     footerNodes: "Active Sensor Nodes",
-    footerEnv: "Collective Environmental Load",
+    footerEnv: "Environmental Impact Assessment",
+    envText: "Grid vectors indicate resource tension caused by deploying configuration metrics into regional nested blocks.",
     awaiting: "Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping."
   },
   hi: {
@@ -42,7 +44,8 @@ const translations = {
     tableMandi: "स्थानीय मंडी मूल्य समतुल्यता",
     tableStrain: "क्लस्टर तनाव नुकसान",
     tableStatus: "रणनीतिक सलाहकार स्थिति",
-    currentBadge: "वर्तमान",
+    currentBadge: "वर्तमान चयन",
+    recBadge: "एआई अनुशंसित",
     riskHigh: "❌ अत्यधिक दोहन का खतरा",
     recMoong: "🎯 अत्यधिक अनुशंसित",
     recMaize: "⚡ संतुलित फसल चक्र",
@@ -51,6 +54,7 @@ const translations = {
     footerWells: "निगरानी किए गए जुड़े कुएं",
     footerNodes: "सक्रिय सेंसर नोड्स",
     footerEnv: "सामूहिक पर्यावरणीय भार",
+    envText: "ग्रिड वेक्टर क्षेत्रीय ब्लॉकों में कॉन्फ़िगरेशन लागू करने के कारण होने वाले संसाधन तनाव को दर्शाते हैं।",
     awaiting: "पैरामीटर का इंतजार है। अनुकूलन मानचित्रण निष्पादित करने के लिए ऊपर राज्य, ग्रिड और फसल विकल्प चुनें।"
   },
   pa: {
@@ -67,7 +71,8 @@ const translations = {
     tableMandi: "ਸਥਾਨਕ ਮੰਡੀ ਕੀਮਤ ਸਮਾਨਤਾ",
     tableStrain: "ਕਲਸਟਰ ਤਣਾਅ ਨੁਕਸਾਨ",
     tableStatus: "ਰਣਨੀਤਕ ਸਲਾਹਕਾਰ ਸਥਿਤੀ",
-    currentBadge: "ਮੌਜੂਦਾ",
+    currentBadge: "ਮੌਜੂਦਾ ਚੋਣ",
+    recBadge: "ਏਆਈ ਸਿਫ਼ਾਰਸ਼ੀ",
     riskHigh: "❌ ਭਾਰੀ ਸ਼ੋਸ਼ਣ ਦਾ ਖਤਰਾ",
     recMoong: "🎯 ਬਹੁਤ ਜ਼ਿਆਦਾ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਗਈ",
     recMaize: "⚡ ਸੰਤੁਲਿਤ ਫਸਲ ਚੱਕਰ",
@@ -76,13 +81,14 @@ const translations = {
     footerWells: "ਟਰੈਕ ਕੀਤੇ ਜੁੜੇ ਖੂਹ",
     footerNodes: "ਸਰਗਰਮ ਸੈਂਸਰ ਨੋਡਸ",
     footerEnv: "ਸਾਮੂਹਿਕ ਵਾਤਾਵਰਣ ਲੋਡ",
+    envText: "ਗ੍ਰਿਡ ਵੈਕਟਰ ਖੇਤਰੀ ਬਲਾਕਾਂ ਵਿੱਚ ਸੰਰਚਨਾ ਮੈਟ੍ਰਿਕਸ ਲਾਗੂ ਕਰਨ ਕਾਰਨ ਪੈਦਾ ਹੋਏ ਸਰੋਤ ਤਣਾਅ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ।",
     awaiting: "ਪੈਰਾਮੀਟਰਾਂ ਦੀ ਉਡੀਕ ਹੈ। ਓਪਟੀਮਾਈਜ਼ੇਸ਼ਨ ਮੈਪਿੰਗ ਚਲਾਉਣ ਲਈ ਉੱਪਰ ਰਾਜ, ਗ੍ਰਿਡ ਅਤੇ ਫਸਲ ਦੀ ਚੋਣ ਕਰੋ।"
   }
 };
 
 export default function App() {
   const [optimizedData, setOptimizedData] = useState(null);
-  const [lang, setLang] = useState('en'); // Default language state
+  const [lang, setLang] = useState('en');
 
   const t = translations[lang];
 
@@ -110,56 +116,44 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12">
-      {/* LANGUAGE TRANSLATION BUTTONS BAR */}
+      {/* LANGUAGE SELECTOR */}
       <div className="flex justify-end gap-2 mb-4">
         <button onClick={() => setLang('en')} className={`px-3 py-1 text-sm font-bold rounded border ${lang === 'en' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300'}`}>English</button>
         <button onClick={() => setLang('hi')} className={`px-3 py-1 text-sm font-bold rounded border ${lang === 'hi' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300'}`}>हिन्दी</button>
         <button onClick={() => setLang('pa')} className={`px-3 py-1 text-sm font-bold rounded border ${lang === 'pa' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300'}`}>ਪੰਜਾਬੀ</button>
       </div>
 
-      {/* HEADER SECTION */}
+      {/* APP TITLE BAR */}
       <header className="mb-8 border-b border-slate-200 pb-6">
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700 font-sans">
-          {t.title}
-        </h1>
-        <p className="text-sm md:text-base text-slate-600 font-medium mt-2">
-          {t.subtitle}
-        </p>
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700 font-sans">{t.title}</h1>
+        <p className="text-sm md:text-base text-slate-600 font-medium mt-2">{t.subtitle}</p>
       </header>
 
-      {/* PARAMETER CONFIGURATION PANEL */}
+      {/* FORM INTERFACE CONTAINER */}
       <div className="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <InputScreen onOptimize={handleOptimizationSubmit} currentLang={lang} />
       </div>
 
-      {/* CONDITIONALLY RENDER OUTPUT PANEL */}
+      {/* MATRIX RESPONSE LAYOUT */}
       {optimizedData ? (
         <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-md transition-all duration-300">
           
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-6">
-            <h3 className="text-xl font-bold text-slate-800 tracking-wide uppercase text-sm">
-              {t.outputTitle}
-            </h3>
+            <h3 className="text-xl font-bold text-slate-800 tracking-wide uppercase text-sm">{t.outputTitle}</h3>
             <span className={`text-sm px-3 py-1.5 rounded-lg font-bold uppercase tracking-wider border ${optimizedData.statusColor}`}>
               {optimizedData.statusLabel}
             </span>
           </div>
 
-          <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6">
-            {t.gridMatrix}: {optimizedData.district}
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6">{t.gridMatrix}: {optimizedData.district}</h2>
 
-          {/* RECOMMENDATION CALLOUT BLOCK */}
+          {/* AI DIRECTIVE PANEL */}
           <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl mb-8 shadow-sm">
-            <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">
-              {t.aiDirective}
-            </div>
-            <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
-              {optimizedData.recommendations[lang]} {/* Reads dynamic language translation text */}
-            </div>
+            <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">{t.aiDirective}</div>
+            <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{optimizedData.recommendations[lang]}</div>
           </div>
 
-          {/* DYNAMIC GROUNDWATER LOAD INDEX GRAPHICS */}
+          {/* WATER DEPLETION SLIDER STATUS */}
           <div className="mb-8 bg-slate-100 p-5 rounded-xl border border-slate-200">
             <div className="flex justify-between text-sm md:text-base font-bold text-slate-700 mb-2">
               <span>{t.indexLabel} ({optimizedData.metrics.soil})</span>
@@ -177,12 +171,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* DYNAMIC COMPARISON BREAKDOWN MODULE */}
+          {/* COMPLETE COMPARISON MATRIX TABLE */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider">
-                {t.title}
-              </h4>
+              <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider">Systemic Comparison Matrix</h4>
             </div>
 
             <div className="overflow-x-auto">
@@ -198,35 +190,66 @@ export default function App() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   
-                  {/* SELECTED CROP VECTOR ROW */}
+                  {/* USER INTERACTION CURRENT CROP ROW */}
                   <tr className="bg-red-50 text-slate-900 font-medium">
                     <td className="py-4 font-bold flex items-center gap-2 text-base pl-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
                       {optimizedData.crop} <span className="text-xs bg-red-100 text-red-800 border border-red-200 px-2 py-0.5 rounded-full font-bold">{t.currentBadge}</span>
                     </td>
                     <td className="py-4 text-center font-bold text-red-600 text-base">{optimizedData.cropMetrics.waterDemand}</td>
-                    <td className="py-4 text-center font-medium text-slate-600">Baseline MSP</td>
-                    <td className="py-4 text-center font-bold text-red-600">+{optimizedData.cropMetrics.loadFactor}%</td>
+                    <td className="py-4 text-center font-medium text-slate-600">Baseline MSP Matrix</td>
+                    <td className="py-4 text-center font-bold text-red-600">+{optimizedData.cropMetrics.loadFactor}% Strain</td>
                     <td className="py-4 text-right font-bold text-red-600 text-sm">{t.riskHigh}</td>
                   </tr>
 
-                  {/* RESTORATIVE ALTERNATIVE OPTION 1 */}
-                  <tr className="hover:bg-slate-50 transition-colors font-medium">
-                    <td className="py-4 text-slate-900 font-bold text-base pl-2">Moong Mung Bean</td>
-                    <td className="py-4 text-center text-blue-600 font-bold text-base">Very Low</td>
-                    <td className="py-4 text-center text-blue-700 font-extrabold text-base bg-blue-50/50">+12% Premium Mandi</td>
-                    <td className="py-4 text-center text-blue-600 font-bold">+5%</td>
-                    <td className="py-4 text-right text-blue-700 font-bold text-sm">{t.recMoong}</td>
+                  {/* ⭐ CRITICAL FEATURE FOCUS: HIGHLIGHTED AI RECOMMENDED TARGET ALTERNATIVE ROW */}
+                  <tr className="bg-blue-50/70 border-y-2 border-blue-200 text-slate-900 font-medium shadow-sm">
+                    <td className="py-4 text-blue-900 font-extrabold text-base pl-2 flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                      Moong Mung Bean <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t.recBadge}</span>
+                    </td>
+                    <td className="py-4 text-center text-blue-700 font-bold text-base">Very Low</td>
+                    <td className="py-4 text-center text-blue-800 font-extrabold text-base bg-blue-100/50">+12% Premium Mandi Net Yield</td>
+                    <td className="py-4 text-center text-blue-700 font-bold">+5% Strain</td>
+                    <td className="py-4 text-right text-blue-800 font-extrabold text-sm">{t.recMoong}</td>
                   </tr>
 
-                  {/* RESOURCE OPTIMIZED ALTERNATIVE OPTION 2 */}
+                  {/* MAIZE MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
-                    <td className="py-4 text-slate-900 text-base pl-2">Maize</td>
+                    <td className="py-4 text-slate-900 text-base pl-2">Maize (Resource Optimized)</td>
                     <td className="py-4 text-center text-sky-600 font-bold text-base">Low</td>
-                    <td className="py-4 text-center text-sky-700 font-bold text-base">+5% Match</td>
-                    <td className="py-4 text-center text-sky-600 font-medium">+15%</td>
+                    <td className="py-4 text-center text-sky-700 font-bold text-base">+5% Equilibrium Match</td>
+                    <td className="py-4 text-center text-sky-600 font-medium">+15% Strain</td>
                     <td className="py-4 text-right text-sky-700 font-bold text-sm">{t.recMaize}</td>
                   </tr>
+
+                  {/* SUGARCANE MATRIX ROW */}
+                  <tr className="hover:bg-slate-50 transition-colors font-medium">
+                    <td className="py-4 text-slate-900 text-base pl-2">Sugarcane</td>
+                    <td className="py-4 text-center text-amber-700 font-bold text-base">High Perennial</td>
+                    <td className="py-4 text-center text-slate-500">Standard Pricing</td>
+                    <td className="py-4 text-center text-amber-700 font-medium">+42% Strain</td>
+                    <td className="py-4 text-right text-amber-700 font-bold text-sm">❌ High Strain Vector</td>
+                  </tr>
+
+                  {/* COTTON MATRIX ROW */}
+                  <tr className="hover:bg-slate-50 transition-colors font-medium">
+                    <td className="py-4 text-slate-900 text-base pl-2">Cotton</td>
+                    <td className="py-4 text-center text-amber-600 font-bold text-base">Moderate</td>
+                    <td className="py-4 text-center text-slate-500">Market Standard</td>
+                    <td className="py-4 text-center text-amber-600 font-medium">+20% Strain</td>
+                    <td className="py-4 text-right text-amber-600 font-bold text-sm">⚠️ High Rotation Variable</td>
+                  </tr>
+
+                  {/* WHEAT MATRIX ROW */}
+                  <tr className="hover:bg-slate-50 transition-colors font-medium">
+                    <td className="py-4 text-slate-900 text-base pl-2">Wheat (Standard Cycle)</td>
+                    <td className="py-4 text-center text-amber-600 font-bold text-base">Moderate Seasonal</td>
+                    <td className="py-4 text-center text-slate-500">Equivalent Market Yield</td>
+                    <td className="py-4 text-center text-amber-600 font-medium">+25% Strain</td>
+                    <td className="py-4 text-right text-amber-600 font-bold text-sm">{t.recWheat}</td>
+                  </tr>
+
                 </tbody>
               </table>
             </div>
@@ -235,23 +258,3 @@ export default function App() {
               {t.mandiNote}
             </div>
           </div>
-
-          {/* STATS METADATA BAR FOOTER */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-200">
-            <div>
-              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerWells}</span>
-              <span className="text-xl font-extrabold text-slate-800 mt-1 block">
-                {optimizedData.metrics.wells} {t.footerNodes}
-              </span>
-            </div>
-          </div>
-
-        </div>
-      ) : (
-        <div className="text-center py-16 bg-white border-2 border-dashed border-slate-200 rounded-xl shadow-inner">
-          <p className="text-base font-medium text-slate-500 max-w-md mx-auto">{t.awaiting}</p>
-        </div>
-      )}
-    </div>
-  );
-}
