@@ -90,7 +90,7 @@ export default function App() {
   const [optimizedData, setOptimizedData] = useState(null);
   const [lang, setLang] = useState('en');
 
-  const t = translations[lang];
+  const t = translations[lang] || translations.en;
 
   const handleOptimizationSubmit = (payload) => {
     const rawCalculatedLoad = payload.metrics.baseLoad + payload.cropMetrics.loadFactor;
@@ -150,7 +150,9 @@ export default function App() {
           {/* AI DIRECTIVE PANEL */}
           <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl mb-8 shadow-sm">
             <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">{t.aiDirective}</div>
-            <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">{optimizedData.recommendations[lang]}</div>
+            <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
+              {optimizedData.recommendations ? optimizedData.recommendations[lang] : ""}
+            </div>
           </div>
 
           {/* WATER DEPLETION SLIDER STATUS */}
@@ -202,7 +204,7 @@ export default function App() {
                     <td className="py-4 text-right font-bold text-red-600 text-sm">{t.riskHigh}</td>
                   </tr>
 
-                  {/* ⭐ CRITICAL FEATURE FOCUS: HIGHLIGHTED AI RECOMMENDED TARGET ALTERNATIVE ROW */}
+                  {/* ⭐ HIGHLIGHTED AI RECOMMENDED TARGET ALTERNATIVE ROW */}
                   <tr className="bg-blue-50/70 border-y-2 border-blue-200 text-slate-900 font-medium shadow-sm">
                     <td className="py-4 text-blue-900 font-extrabold text-base pl-2 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
@@ -226,35 +228,4 @@ export default function App() {
                   {/* SUGARCANE MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
                     <td className="py-4 text-slate-900 text-base pl-2">Sugarcane</td>
-                    <td className="py-4 text-center text-amber-700 font-bold text-base">High Perennial</td>
-                    <td className="py-4 text-center text-slate-500">Standard Pricing</td>
-                    <td className="py-4 text-center text-amber-700 font-medium">+42% Strain</td>
-                    <td className="py-4 text-right text-amber-700 font-bold text-sm">❌ High Strain Vector</td>
-                  </tr>
-
-                  {/* COTTON MATRIX ROW */}
-                  <tr className="hover:bg-slate-50 transition-colors font-medium">
-                    <td className="py-4 text-slate-900 text-base pl-2">Cotton</td>
-                    <td className="py-4 text-center text-amber-600 font-bold text-base">Moderate</td>
-                    <td className="py-4 text-center text-slate-500">Market Standard</td>
-                    <td className="py-4 text-center text-amber-600 font-medium">+20% Strain</td>
-                    <td className="py-4 text-right text-amber-600 font-bold text-sm">⚠️ High Rotation Variable</td>
-                  </tr>
-
-                  {/* WHEAT MATRIX ROW */}
-                  <tr className="hover:bg-slate-50 transition-colors font-medium">
-                    <td className="py-4 text-slate-900 text-base pl-2">Wheat (Standard Cycle)</td>
-                    <td className="py-4 text-center text-amber-600 font-bold text-base">Moderate Seasonal</td>
-                    <td className="py-4 text-center text-slate-500">Equivalent Market Yield</td>
-                    <td className="py-4 text-center text-amber-600 font-medium">+25% Strain</td>
-                    <td className="py-4 text-right text-amber-600 font-bold text-sm">{t.recWheat}</td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-            
-            <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 leading-normal font-medium">
-              {t.mandiNote}
-            </div>
-          </div>
+                    <td className="py-4 text-center text-amber-700 font-bold
