@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import InputScreen from './components/InputScreen';
 
-// 🌐 Global Multilingual Interface & Table Dictionary Matrix
 const translations = {
   en: {
     title: "Aquifer.ai Groundwater Matrix",
@@ -29,7 +28,6 @@ const translations = {
     footerEnv: "Environmental Impact Assessment",
     envText: "Grid vectors indicate resource tension caused by deploying configuration metrics into regional nested blocks.",
     awaiting: "Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping.",
-    // Dynamic Table Row Translation Injectors
     cropMoong: "Moong Mung Bean",
     cropMaize: "Maize (Resource Optimized)",
     cropSugarcane: "Sugarcane",
@@ -72,8 +70,7 @@ const translations = {
     footerNodes: "सक्रिय सेंसर नोड्स",
     footerEnv: "सामूहिक पर्यावरणीय भार",
     envText: "ग्रिड वेक्टर क्षेत्रीय ब्लॉकों में कॉन्फ़िगरेशन लागू करने के कारण होने वाले संसाधन तनाव को दर्शाते हैं।",
-    awaiting: "पैरामीटर का इंतजार है। अनुकूलन मानचित्रण निष्पादित करने के लिए ऊपर राज्य, ग्रिड और फसल विकल्प चुनें।" +
-      "",
+    awaiting: "पैरामीटर का इंतजार है। अनुकूलन मानचित्रण निष्पादित करने के लिए ऊपर राज्य, ग्रिड और फसल विकल्प चुनें।",
     cropMoong: "मूंग (साबुत दाल)",
     cropMaize: "मक्का (संसाधन अनुकूलित)",
     cropSugarcane: "गन्ना",
@@ -82,7 +79,7 @@ const translations = {
     waterVeryLow: "बहुत कम",
     waterLow: "कम खपत",
     waterHigh: "अत्यधिक बारहमासी",
-    waterMod: "सामान्य मौसमी",
+    waterMod: "सामान्य मौसਮੀ",
     mandiMoong: "+12% प्रीमियम मंडी शुद्ध लाभ",
     mandiMaize: "+5% संतुलित मूल्य मैच",
     mandiStandard: "मानक बाजार मूल्य",
@@ -90,49 +87,6 @@ const translations = {
     mandiWheat: "समतुल्य बाजार उपज",
     statusHighStrain: "❌ उच्च तनाव वेक्टर",
     statusRotation: "⚠️ उच्च रोटेशन चर"
-  },
-  pa: {
-    title: "Aquifer.ai ਭੂਮੀਗਤ ਪਾਣੀ ਮੈਟ੍ਰਿਕਸ",
-    subtitle: "ਪਾਣੀ ਦੇ ਸਰੋਤਾਂ ਦਾ ਸੰਤੁਲਨ ਅਤੇ ਮਾਰਕੀਟ ਮੁਨਾਫਾ ਓਪਟੀਮਾਈਜ਼ਰ",
-    configTitle: "ਪੈਰਾਮੀਟਰ ਮੈਟ੍ਰਿਕਸ ਕੌਂਫਿਗਰ ਕਰੋ",
-    outputTitle: "ਨੈੱਟਵਰਕ ਓਪਟੀਮਾਈਜ਼ੇਸ਼ਨ ਆਉਟਪੁੱਟ",
-    gridMatrix: "ਐਕਵਾਇਰ ਗ੍ਰਿਡ ਮੈਟ੍ਰਿਕਸ",
-    aiDirective: "💡 ਸਿਸਟਮਿਕ ਏਆਈ ਫਸਲ ਨਿਰਦੇਸ਼",
-    indexLabel: "ਕਲਸਟਰ ਕੱਢਣ ਦਾ ਲੋਡ ਇੰਡੈਕਸ",
-    capacity: "ਸਮਰੱਥਾ",
-    tableCrop: "Фਸਲ ਦਾ ਕਿਸਮ",
-    tableWater: "ਪਾਣੀ ਦੀ ਮੰਗ",
-    tableMandi: "ਸਥਾਨਕ ਮੰਡੀ ਕੀਮਤ ਸਮਾਨਤਾ",
-    tableStrain: "ਕਲਸਟਰ ਤਣਾਅ ਨੁਕਸਾਨ",
-    tableStatus: "ਰਣਨੀਤਕ ਸਲਾਹਕਾਰ ਸਥਿਤੀ",
-    currentBadge: "ਮੌਜੂਦਾ ਚੋਣ",
-    recBadge: "ਏਆਈ ਸਿਫ਼ਾਰਸ਼ੀ",
-    riskHigh: "❌ ਭਾਰੀ ਸ਼ੋਸ਼ਣ ਦਾ ਖਤਰਾ",
-    recMoong: "🎯 ਬਹੁਤ ਜ਼ਿਆਦਾ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਗਈ",
-    recMaize: "⚡ ਸੰਤੁਲਿਤ ਫਸਲ ਚੱਕਰ",
-    recWheat: "⚠️ ਸ਼ਰਤੀਆ ਸੀਮਾ",
-    mandiNote: "*ਨੋਟ: ਸਥਾਨਕ ਮੰਡੀ ਦੇ ਭਾਅ ਦੀ ਗਣਨਾ ਖਰਚੇ ਦੇ ਕਾਰਕਾਂ ਦੇ ਨਾਲ ਖੇਤਰੀ ਥੋਕ ਡੇਟਾ ਨੂੰ ਮਿਲਾ ਕੇ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।",
-    footerWells: "ਟਰੈਕ ਕੀਤੇ ਜੁੜੇ ਖੂਹ",
-    footerNodes: "ਸਰਗਰਮ ਸੈਂਸਰ ਨੋਡਸ",
-    footerEnv: "ਸਾਮੂਹਿਕ ਵਾਤਾਵਰਣ ਲੋਡ",
-    envText: "ਗ੍ਰਿਡ ਵੈਕਟਰ ਖੇਤਰੀ ਬਲਾਕਾਂ ਵਿੱਚ ਸੰਰਚਨਾ ਮੈਟ੍ਰਿਕਸ ਲਾਗੂ ਕਰਨ ਕਾਰਨ ਪੈਦਾ ਹੋਏ ਸਰੋਤ ਤਣਾਅ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ।",
-    awaiting: "ਪੈਰਾਮੀਟਰਾਂ ਦੀ ਉਡੀਕ ਹੈ। ਓਪਟੀਮਾਈਜ਼ੇਸ਼ਨ ਮੈਪਿੰਗ ਚਲਾਉਣ ਲਈ ਉੱਪਰ ਰਾਜ, ਗ੍ਰਿਡ ਅਤੇ ਫਸਲ ਦੀ ਚੋਣ ਕਰੋ।",
-    cropMoong: "ਮੂੰਗੀ ਦੀ ਦਾਲ",
-    cropMaize: "ਮੱਕੀ (ਸਰੋਤ ਅਨੁਕੂਲਿਤ)",
-    cropSugarcane: "ਗੰਨਾ",
-    cropCotton: "ਕਪਾਹ / ਨਰਮਾ",
-    cropWheat: "ਕਣਕ (ਸਟੈਂਡਰਡ ਚੱਕਰ)",
-    waterVeryLow: "ਬਹੁਤ ਘੱਟ",
-    waterLow: "ਘੱਟ ਖਪਤ",
-    waterHigh: "ਬਹੁਤ ਜ਼ਿਆਦਾ ਬਾਰ੍ਹਵੀਂ",
-    waterMod: "ਦਰਮਿਆਨੀ ਮੌਸਮੀ",
-    mandiMoong: "+12% ਪ੍ਰੀਮੀਅਮ ਮੰਡੀ ਸ਼ੁੱਧ ਮੁਨਾਫਾ",
-    mandiMaize: "+5% ਸੰਤੁਲਿਤ ਮੈਚ",
-    mandiStandard: "ਮਿਆਰੀ ਕੀਮਤ",
-    mandiMarket: "ਮਾਰਕੀਟ ਸਟੈਂਡਰਡ",
-    mandiWheat: "ਬਰਾਬਰ ਮਾਰਕੀਟ ਉਪਜ",
-    statusHighStrain: "❌ ਉੱਚ ਤਣਾਅ ਵੈਕਟਰ",
-    statusRotation: "⚠️ ਉੱਚ ਰੋਟੇਸ਼ਨ ਵੇਰੀਏਬਲ"
   }
 };
 
@@ -165,17 +119,16 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12">
+    <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12 font-sans">
       {/* LANGUAGE SELECTOR */}
       <div className="flex justify-end gap-2 mb-4">
-        <button onClick={() => setLang('en')} className={`px-3 py-1 text-sm font-bold rounded border ${lang === 'en' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300'}`}>English</button>
-        <button onClick={() => setLang('hi')} className={`px-3 py-1 text-sm font-bold rounded border ${lang === 'hi' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300'}`}>हिन्दी</button>
-        <button onClick={() => setLang('pa')} className={`px-3 py-1 text-sm font-bold rounded border ${lang === 'pa' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-slate-300'}`}>ਪੰਜਾਬੀ</button>
+        <button onClick={() => setLang('en')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'en' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>English</button>
+        <button onClick={() => setLang('hi')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'hi' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>हिन्दी</button>
       </div>
 
       {/* APP TITLE BAR */}
       <header className="mb-8 border-b border-slate-200 pb-6">
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700 font-sans">{t.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700">{t.title}</h1>
         <p className="text-sm md:text-base text-slate-600 font-medium mt-2">{t.subtitle}</p>
       </header>
 
@@ -186,10 +139,10 @@ export default function App() {
 
       {/* MATRIX RESPONSE LAYOUT */}
       {optimizedData ? (
-        <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-md transition-all duration-300">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-md">
           
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-6">
-            <h3 className="text-xl font-bold text-slate-800 tracking-wide uppercase text-sm">{t.outputTitle}</h3>
+            <h3 className="text-xs font-bold text-slate-400 tracking-wide uppercase">{t.outputTitle}</h3>
             <span className={`text-sm px-3 py-1.5 rounded-lg font-bold uppercase tracking-wider border ${optimizedData.statusColor}`}>
               {optimizedData.statusLabel}
             </span>
@@ -230,22 +183,20 @@ export default function App() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left font-sans text-sm md:text-base text-slate-700">
+              <table className="w-full text-left text-sm md:text-base text-slate-700 min-w-[600px]">
                 <thead>
                   <tr className="border-b-2 border-slate-200 text-slate-500 uppercase tracking-wider text-xs font-bold">
-                    <thead>
-                  <tr className="border-b-2 border-slate-200 text-slate-500 uppercase tracking-wider text-xs font-bold">
-                    <th className="pb-3 font-semibold">{t.tableCrop}</th>
-                    <th className="pb-3 font-semibold text-center">{t.tableWater}</th>
-                    <th className="pb-3 font-semibold text-center">{t.tableMandi}</th>
-                    <th className="pb-3 font-semibold text-center">{t.tableStrain}</th>
-                    <th className="pb-3 font-semibold text-right">{t.tableStatus}</th>
+                    <th className="pb-3 font-semibold">🧬 {t.tableCrop}</th>
+                    <th className="pb-3 font-semibold text-center">💧 {t.tableWater}</th>
+                    <th className="pb-3 font-semibold text-center">💰 {t.tableMandi}</th>
+                    <th className="pb-3 font-semibold text-center">📉 {t.tableStrain}</th>
+                    <th className="pb-3 font-semibold text-right">📋 {t.tableStatus}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   
                   {/* USER INTERACTION CURRENT CROP ROW */}
-                  <tr className="bg-red-50 text-slate-900 font-medium">
+                  <tr className="bg-red-50/80 text-slate-900 font-medium">
                     <td className="py-4 font-bold flex items-center gap-2 text-base pl-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
                       {optimizedData.crop} <span className="text-xs bg-red-100 text-red-800 border border-red-200 px-2 py-0.5 rounded-full font-bold">{t.currentBadge}</span>
@@ -257,7 +208,7 @@ export default function App() {
                   </tr>
 
                   {/* ⭐ HIGHLIGHTED AI RECOMMENDED TARGET ALTERNATIVE ROW */}
-                  <tr className="bg-blue-50/90 border-y-2 border-blue-200 text-slate-900 font-medium shadow-sm">
+                  <tr className="bg-blue-50 border-y-2 border-blue-200 text-slate-900 font-medium">
                     <td className="py-4 text-blue-900 font-extrabold text-base pl-2 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
                       {t.cropMoong} <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t.recBadge}</span>
