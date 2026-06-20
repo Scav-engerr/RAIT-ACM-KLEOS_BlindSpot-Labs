@@ -34,7 +34,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-900 text-slate-100 p-8">
       {/* HEADER SECTION */}
       <header className="mb-8 border-b border-slate-800 pb-4">
-        <h1 className="text-2xl font-bold tracking-tight text-cyan-400 font-mono">AQUIFER.AI // MATRIX</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-cyan-400 font-mono">AQUIFER.AI</h1>
         <p className="text-xs text-slate-500 font-mono mt-1">Multi-Agent Game-Theoretic Hydraulic Resource Balancing</p>
       </header>
 
@@ -50,7 +50,7 @@ export default function App() {
           {/* HEADER ALERT LEVEL METRIC */}
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-4">
             <h3 className="text-lg font-bold font-mono text-slate-100 tracking-wide">
-              // NETWORK OPTIMIZATION OUTPUT
+              NETWORK OPTIMIZATION OUTPUT
             </h3>
             <span className={`text-xs px-2.5 py-1 rounded font-mono uppercase tracking-wider border ${optimizedData.statusColor}`}>
               {optimizedData.statusLabel}
