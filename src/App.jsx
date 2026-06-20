@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import InputScreen from './components/InputScreen';
 
@@ -47,10 +46,11 @@ const translations = {
     statusHighStrain: "❌ High Strain Vector",
     statusRotation: "⚠️ High Rotation Variable",
     // FinTech Additions
-    fintechTitle: "🏦 Bank Alternative Underwriting Ledger",
-    creditScoreLabel: "AI Eco-Credit Score (Collateral Base)",
+    fintechTitle: "🏦 Bank Alternative Underwriting & Ledger Matrix",
+    creditScoreLabel: "AI Eco-Credit Score (Risk Asset)",
     suretyLabel: "Bank Loan Surety Rating",
-    waterSavedLabel: "Hydraulic Asset Reserve"
+    waterSavedLabel: "Hydraulic Asset Reserve",
+    cashPayoutLabel: "Accrued Green Subsidy Payout"
   },
   hi: {
     title: "Aquifer.ai भूजल मैट्रिक्स",
@@ -95,10 +95,11 @@ const translations = {
     statusHighStrain: "❌ उच्च तनाव वेक्टर",
     statusRotation: "⚠️ उच्च रोटेशन चर",
     // FinTech Additions
-    fintechTitle: "🏦 बैंक वैकल्पिक हामीदारी बही (FinTech)",
-    creditScoreLabel: "एआई इको-क्रेडिट स्कोर (डिजिटल संपार्श्विक)",
+    fintechTitle: "🏦 बैंक वैकल्पिक हामीदारी एवं बहीखाता मैट्रिक्स",
+    creditScoreLabel: "एआई इको-क्रेडिट स्कोर (जोखिम संपत्ति)",
     suretyLabel: "बैंक ऋण सुरक्षा रेटिंग",
-    waterSavedLabel: "जल परिसंपत्ति संचय"
+    waterSavedLabel: "जल परिसंपत्ति संचय",
+    cashPayoutLabel: "संचित हरित सब्सिडी भुगतान"
   }
 };
 
@@ -123,28 +124,31 @@ export default function App() {
       statusColor = "border-orange-600 text-orange-700 bg-orange-50";
     }
 
-    // 🏦 FINTECH CALCULATIONS
-    // Calculate difference between chosen crop strain and optimized baseline (Moong factor = 5)
+    // 🏦 FINTECH ADVANCED LOGIC
     const loadSaved = Math.max(0, payload.cropMetrics.loadFactor - 5);
     const waterSavedLiters = loadSaved * 12500; 
 
-    // Dynamic Banking Underwriting Logic
-    let creditScore = 620; // Default baseline score
+    // Dynamic Credit Scoring and Green Payout Framework
+    let creditScore = 620; 
     let suretyRating = "POOR / HIGH DEFAULT RISK";
     let suretyColor = "text-red-600 bg-red-50 border-red-200";
+    let cashPayout = 0; // Calculated baseline cash earned
 
     if (waterSavedLiters > 40000) {
       creditScore = 840;
       suretyRating = "AAA+ / PRE-APPROVED EXCELLENT";
-      suretyColor = "text-emerald-700 bg-emerald-50 border-emerald-200";
+      suretyColor = "text-emerald-400 bg-emerald-950/50 border-emerald-800";
+      cashPayout = Math.floor(waterSavedLiters * 0.15); // ₹0.15 per liter saved incentive
     } else if (waterSavedLiters > 15000) {
       creditScore = 740;
       suretyRating = "AA / HIGH ELIGIBILITY PRIME";
-      suretyColor = "text-blue-700 bg-blue-50 border-blue-200";
+      suretyColor = "text-blue-400 bg-blue-950/50 border-blue-800";
+      cashPayout = Math.floor(waterSavedLiters * 0.12);
     } else if (waterSavedLiters > 0) {
       creditScore = 680;
       suretyRating = "B+ / CONDITIONAL ACCEPTANCE";
-      suretyColor = "text-amber-700 bg-amber-50 border-amber-200";
+      suretyColor = "text-amber-400 bg-amber-950/50 border-amber-800";
+      cashPayout = Math.floor(waterSavedLiters * 0.10);
     }
 
     setOptimizedData({
@@ -155,31 +159,32 @@ export default function App() {
       waterSavedLiters,
       creditScore,
       suretyRating,
-      suretyColor
+      suretyColor,
+      cashPayout
     });
   };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12 font-sans">
       
-      {/* LANGUAGE SELECTOR */}
+      {/* LANGUAGE MATRIX SWITCHER */}
       <div className="flex justify-end gap-2 mb-4">
         <button onClick={() => setLang('en')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'en' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>English</button>
         <button onClick={() => setLang('hi')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'hi' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>हिन्दी</button>
       </div>
 
-      {/* HEADER */}
+      {/* DASHBOARD HEADER */}
       <header className="mb-8 border-b border-slate-200 pb-6">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700">{t.title}</h1>
         <p className="text-sm md:text-base text-slate-600 font-medium mt-2">{t.subtitle}</p>
       </header>
 
-      {/* INPUT FORM CONTAINER */}
+      {/* INPUT CONFIGURATION PORTAL */}
       <div className="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <InputScreen onOptimize={handleOptimizationSubmit} currentLang={lang} />
       </div>
 
-      {/* DYNAMIC RESPONSE PANELS */}
+      {/* MATRIX RESPONSE RENDER PIPELINE */}
       {optimizedData ? (
         <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-md">
           
@@ -192,7 +197,7 @@ export default function App() {
 
           <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6">{t.gridMatrix}: {optimizedData.district}</h2>
 
-          {/* AI ADVISORY DIRECTIVE */}
+          {/* SYSTEMAI ADVISORY PANELS */}
           <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl mb-6 shadow-sm">
             <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">{t.aiDirective}</div>
             <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
@@ -200,13 +205,13 @@ export default function App() {
             </div>
           </div>
 
-          {/* 🏦 NEW FINTECH BLOCK: BANK LOAN UNDERWRITING SCORECARD */}
+          {/* 🏦 ADVANCED FINTECH LEDGER ACCELERATOR (Includes Risk Scores + Cash Rewards) */}
           <div className="mb-8 bg-slate-900 text-white rounded-xl p-6 shadow-xl border border-slate-800">
-            <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">{t.fintechTitle}</div>
+            <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-5">{t.fintechTitle}</div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               
-              {/* Eco-Credit Score Badge */}
+              {/* Core Risk Matrix Underwriting Score */}
               <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
                 <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.creditScoreLabel}</span>
                 <span className={`text-3xl font-black mt-2 block ${optimizedData.creditScore > 750 ? 'text-emerald-400' : optimizedData.creditScore > 650 ? 'text-blue-400' : 'text-red-400'}`}>
@@ -214,27 +219,36 @@ export default function App() {
                 </span>
               </div>
 
-              {/* Bank Surety Rating Card */}
+              {/* Bank Surety Evaluation */}
               <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 flex flex-col justify-between">
                 <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.suretyLabel}</span>
-                <span className={`text-sm px-2.5 py-1 rounded font-bold uppercase tracking-wide border text-center mt-2 ${optimizedData.suretyColor}`}>
+                <span className={`text-xs px-2.5 py-2 rounded font-bold uppercase tracking-wider border text-center mt-2 block ${optimizedData.suretyColor}`}>
                   {optimizedData.suretyRating}
                 </span>
               </div>
 
-              {/* Accumulated Water Reserve Collateral */}
+              {/* Volumetric Water Savings Asset Reserve */}
               <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
                 <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.waterSavedLabel}</span>
-                <span className="text-xl font-black text-emerald-400 mt-2 block">
-                  {optimizedData.waterSavedLiters.toLocaleString()} Liters/H
+                <span className="text-2xl font-black text-blue-400 mt-2 block">
+                  {optimizedData.waterSavedLiters.toLocaleString()} L
                 </span>
-                <span className="text-xs text-slate-400 block mt-0.5">Asset Margin Created</span>
+                <span className="text-xs text-slate-500 block mt-0.5">Hydraulic Collateral / H</span>
+              </div>
+
+              {/* ⭐ THE MISSING PIECE: LIQUID CASH INCENTIVE GENERATOR FOR FARMERS */}
+              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 bg-gradient-to-br from-slate-800 to-emerald-950/30">
+                <span className="block text-xs text-emerald-400 font-bold uppercase tracking-wider">{t.cashPayoutLabel}</span>
+                <span className="text-3xl font-black text-emerald-400 mt-2 block">
+                  ₹{optimizedData.cashPayout.toLocaleString()}
+                </span>
+                <span className="text-xs text-slate-400 block mt-0.5">Direct Net Worth Credit</span>
               </div>
 
             </div>
           </div>
 
-          {/* WATER RECOVERY SLIDER */}
+          {/* WATER INDEX PROFILE ACCELERATOR */}
           <div className="mb-8 bg-slate-100 p-5 rounded-xl border border-slate-200">
             <div className="flex justify-between text-sm md:text-base font-bold text-slate-700 mb-2">
               <span>{t.indexLabel} ({optimizedData.metrics.soil})</span>
@@ -252,7 +266,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* SYSTEM COMPARISON MATRIX TABLE */}
+          {/* DYNAMIC COMPARISON DATA MATRIX */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm">
             <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider mb-4">Systemic Comparison Matrix</h4>
             <div className="overflow-x-auto">
@@ -268,7 +282,6 @@ export default function App() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   
-                  {/* Current Active Selection Row */}
                   <tr className="bg-red-50/80 text-slate-900 font-medium">
                     <td className="py-4 font-bold flex items-center gap-2 text-base pl-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
@@ -280,7 +293,6 @@ export default function App() {
                     <td className="py-4 text-right font-bold text-red-600 text-sm">{t.riskHigh}</td>
                   </tr>
 
-                  {/* AI Optimal Directive Alternative Target Row */}
                   <tr className="bg-blue-50 border-y-2 border-blue-200 text-slate-900 font-medium">
                     <td className="py-4 text-blue-900 font-extrabold text-base pl-2 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
@@ -292,7 +304,6 @@ export default function App() {
                     <td className="py-4 text-right text-blue-800 font-extrabold text-sm">{t.recMoong}</td>
                   </tr>
 
-                  {/* Other Array Options */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
                     <td className="py-4 text-slate-900 text-base pl-2">{t.cropMaize}</td>
                     <td className="py-4 text-center text-sky-600 font-bold text-base">{t.waterLow}</td>
@@ -328,12 +339,12 @@ export default function App() {
                 </tbody>
               </table>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 loading-normal font-medium">
+            <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 leading-normal font-medium">
               {t.mandiNote}
             </div>
           </div>
 
-          {/* LOWER META BASE */}
+          {/* LOWER METADATA BAR */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-200">
             <div>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerWells}</span>
