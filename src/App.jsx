@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InputScreen from './components/InputScreen';
 
-// 🌐 Translation Dictionary Layer
+// 🌐 Global Multilingual Interface & Table Dictionary Matrix
 const translations = {
   en: {
     title: "Aquifer.ai Groundwater Matrix",
@@ -28,7 +28,24 @@ const translations = {
     footerNodes: "Active Sensor Nodes",
     footerEnv: "Environmental Impact Assessment",
     envText: "Grid vectors indicate resource tension caused by deploying configuration metrics into regional nested blocks.",
-    awaiting: "Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping."
+    awaiting: "Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping.",
+    // Dynamic Table Row Translation Injectors
+    cropMoong: "Moong Mung Bean",
+    cropMaize: "Maize (Resource Optimized)",
+    cropSugarcane: "Sugarcane",
+    cropCotton: "Cotton",
+    cropWheat: "Wheat (Standard Cycle)",
+    waterVeryLow: "Very Low",
+    waterLow: "Low",
+    waterHigh: "High Perennial",
+    waterMod: "Moderate Seasonal",
+    mandiMoong: "+12% Premium Mandi Net Yield",
+    mandiMaize: "+5% Equilibrium Match",
+    mandiStandard: "Standard Pricing",
+    mandiMarket: "Market Standard",
+    mandiWheat: "Equivalent Market Yield",
+    statusHighStrain: "❌ High Strain Vector",
+    statusRotation: "⚠️ High Rotation Variable"
   },
   hi: {
     title: "Aquifer.ai भूजल मैट्रिक्स",
@@ -55,7 +72,24 @@ const translations = {
     footerNodes: "सक्रिय सेंसर नोड्स",
     footerEnv: "सामूहिक पर्यावरणीय भार",
     envText: "ग्रिड वेक्टर क्षेत्रीय ब्लॉकों में कॉन्फ़िगरेशन लागू करने के कारण होने वाले संसाधन तनाव को दर्शाते हैं।",
-    awaiting: "पैरामीटर का इंतजार है। अनुकूलन मानचित्रण निष्पादित करने के लिए ऊपर राज्य, ग्रिड और फसल विकल्प चुनें।"
+    awaiting: "पैरामीटर का इंतजार है। अनुकूलन मानचित्रण निष्पादित करने के लिए ऊपर राज्य, ग्रिड और फसल विकल्प चुनें।" +
+      "",
+    cropMoong: "मूंग (साबुत दाल)",
+    cropMaize: "मक्का (संसाधन अनुकूलित)",
+    cropSugarcane: "गन्ना",
+    cropCotton: "कपास (रुई)",
+    cropWheat: "गेहूं (मानक चक्र)",
+    waterVeryLow: "बहुत कम",
+    waterLow: "कम खपत",
+    waterHigh: "अत्यधिक बारहमासी",
+    waterMod: "सामान्य मौसमी",
+    mandiMoong: "+12% प्रीमियम मंडी शुद्ध लाभ",
+    mandiMaize: "+5% संतुलित मूल्य मैच",
+    mandiStandard: "मानक बाजार मूल्य",
+    mandiMarket: "बाजार मानक",
+    mandiWheat: "समतुल्य बाजार उपज",
+    statusHighStrain: "❌ उच्च तनाव वेक्टर",
+    statusRotation: "⚠️ उच्च रोटेशन चर"
   },
   pa: {
     title: "Aquifer.ai ਭੂਮੀਗਤ ਪਾਣੀ ਮੈਟ੍ਰਿਕਸ",
@@ -66,7 +100,7 @@ const translations = {
     aiDirective: "💡 ਸਿਸਟਮਿਕ ਏਆਈ ਫਸਲ ਨਿਰਦੇਸ਼",
     indexLabel: "ਕਲਸਟਰ ਕੱਢਣ ਦਾ ਲੋਡ ਇੰਡੈਕਸ",
     capacity: "ਸਮਰੱਥਾ",
-    tableCrop: "ਫਸਲ ਦਾ ਕਿਸਮ",
+    tableCrop: "Фਸਲ ਦਾ ਕਿਸਮ",
     tableWater: "ਪਾਣੀ ਦੀ ਮੰਗ",
     tableMandi: "ਸਥਾਨਕ ਮੰਡੀ ਕੀਮਤ ਸਮਾਨਤਾ",
     tableStrain: "ਕਲਸਟਰ ਤਣਾਅ ਨੁਕਸਾਨ",
@@ -82,7 +116,23 @@ const translations = {
     footerNodes: "ਸਰਗਰਮ ਸੈਂਸਰ ਨੋਡਸ",
     footerEnv: "ਸਾਮੂਹਿਕ ਵਾਤਾਵਰਣ ਲੋਡ",
     envText: "ਗ੍ਰਿਡ ਵੈਕਟਰ ਖੇਤਰੀ ਬਲਾਕਾਂ ਵਿੱਚ ਸੰਰਚਨਾ ਮੈਟ੍ਰਿਕਸ ਲਾਗੂ ਕਰਨ ਕਾਰਨ ਪੈਦਾ ਹੋਏ ਸਰੋਤ ਤਣਾਅ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ।",
-    awaiting: "ਪੈਰਾਮੀਟਰਾਂ ਦੀ ਉਡੀਕ ਹੈ। ਓਪਟੀਮਾਈਜ਼ੇਸ਼ਨ ਮੈਪਿੰਗ ਚਲਾਉਣ ਲਈ ਉੱਪਰ ਰਾਜ, ਗ੍ਰਿਡ ਅਤੇ ਫਸਲ ਦੀ ਚੋਣ ਕਰੋ।"
+    awaiting: "ਪੈਰਾਮੀਟਰਾਂ ਦੀ ਉਡੀਕ ਹੈ। ਓਪਟੀਮਾਈਜ਼ੇਸ਼ਨ ਮੈਪਿੰਗ ਚਲਾਉਣ ਲਈ ਉੱਪਰ ਰਾਜ, ਗ੍ਰਿਡ ਅਤੇ ਫਸਲ ਦੀ ਚੋਣ ਕਰੋ।",
+    cropMoong: "ਮੂੰਗੀ ਦੀ ਦਾਲ",
+    cropMaize: "ਮੱਕੀ (ਸਰੋਤ ਅਨੁਕੂਲਿਤ)",
+    cropSugarcane: "ਗੰਨਾ",
+    cropCotton: "ਕਪਾਹ / ਨਰਮਾ",
+    cropWheat: "ਕਣਕ (ਸਟੈਂਡਰਡ ਚੱਕਰ)",
+    waterVeryLow: "ਬਹੁਤ ਘੱਟ",
+    waterLow: "ਘੱਟ ਖਪਤ",
+    waterHigh: "ਬਹੁਤ ਜ਼ਿਆਦਾ ਬਾਰ੍ਹਵੀਂ",
+    waterMod: "ਦਰਮਿਆਨੀ ਮੌਸਮੀ",
+    mandiMoong: "+12% ਪ੍ਰੀਮੀਅਮ ਮੰਡੀ ਸ਼ੁੱਧ ਮੁਨਾਫਾ",
+    mandiMaize: "+5% ਸੰਤੁਲਿਤ ਮੈਚ",
+    mandiStandard: "ਮਿਆਰੀ ਕੀਮਤ",
+    mandiMarket: "ਮਾਰਕੀਟ ਸਟੈਂਡਰਡ",
+    mandiWheat: "ਬਰਾਬਰ ਮਾਰਕੀਟ ਉਪਜ",
+    statusHighStrain: "❌ ਉੱਚ ਤਣਾਅ ਵੈਕਟਰ",
+    statusRotation: "⚠️ ਉੱਚ ਰੋਟੇਸ਼ਨ ਵੇਰੀਏਬਲ"
   }
 };
 
@@ -183,6 +233,8 @@ export default function App() {
               <table className="w-full text-left font-sans text-sm md:text-base text-slate-700">
                 <thead>
                   <tr className="border-b-2 border-slate-200 text-slate-500 uppercase tracking-wider text-xs font-bold">
+                    <thead>
+                  <tr className="border-b-2 border-slate-200 text-slate-500 uppercase tracking-wider text-xs font-bold">
                     <th className="pb-3 font-semibold">{t.tableCrop}</th>
                     <th className="pb-3 font-semibold text-center">{t.tableWater}</th>
                     <th className="pb-3 font-semibold text-center">{t.tableMandi}</th>
@@ -205,27 +257,84 @@ export default function App() {
                   </tr>
 
                   {/* ⭐ HIGHLIGHTED AI RECOMMENDED TARGET ALTERNATIVE ROW */}
-                  <tr className="bg-blue-50/70 border-y-2 border-blue-200 text-slate-900 font-medium shadow-sm">
+                  <tr className="bg-blue-50/90 border-y-2 border-blue-200 text-slate-900 font-medium shadow-sm">
                     <td className="py-4 text-blue-900 font-extrabold text-base pl-2 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
-                      Moong Mung Bean <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t.recBadge}</span>
+                      {t.cropMoong} <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">{t.recBadge}</span>
                     </td>
-                    <td className="py-4 text-center text-blue-700 font-bold text-base">Very Low</td>
-                    <td className="py-4 text-center text-blue-800 font-extrabold text-base bg-blue-100/50">+12% Premium Mandi Net Yield</td>
+                    <td className="py-4 text-center text-blue-700 font-bold text-base">{t.waterVeryLow}</td>
+                    <td className="py-4 text-center text-blue-800 font-extrabold text-base bg-blue-100/50">{t.mandiMoong}</td>
                     <td className="py-4 text-center text-blue-700 font-bold">+5% Strain</td>
                     <td className="py-4 text-right text-blue-800 font-extrabold text-sm">{t.recMoong}</td>
                   </tr>
 
                   {/* MAIZE MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
-                    <td className="py-4 text-slate-900 text-base pl-2">Maize (Resource Optimized)</td>
-                    <td className="py-4 text-center text-sky-600 font-bold text-base">Low</td>
-                    <td className="py-4 text-center text-sky-700 font-bold text-base">+5% Equilibrium Match</td>
+                    <td className="py-4 text-slate-900 text-base pl-2">{t.cropMaize}</td>
+                    <td className="py-4 text-center text-sky-600 font-bold text-base">{t.waterLow}</td>
+                    <td className="py-4 text-center text-sky-700 font-bold text-base">{t.mandiMaize}</td>
                     <td className="py-4 text-center text-sky-600 font-medium">+15% Strain</td>
                     <td className="py-4 text-right text-sky-700 font-bold text-sm">{t.recMaize}</td>
                   </tr>
 
                   {/* SUGARCANE MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
-                    <td className="py-4 text-slate-900 text-base pl-2">Sugarcane</td>
-                    <td className="py-4 text-center text-amber-700 font-bold
+                    <td className="py-4 text-slate-900 text-base pl-2">{t.cropSugarcane}</td>
+                    <td className="py-4 text-center text-amber-700 font-bold text-base">{t.waterHigh}</td>
+                    <td className="py-4 text-center text-slate-500">{t.mandiStandard}</td>
+                    <td className="py-4 text-center text-amber-700 font-medium">+42% Strain</td>
+                    <td className="py-4 text-right text-amber-700 font-bold text-sm">{t.statusHighStrain}</td>
+                  </tr>
+
+                  {/* COTTON MATRIX ROW */}
+                  <tr className="hover:bg-slate-50 transition-colors font-medium">
+                    <td className="py-4 text-slate-900 text-base pl-2">{t.cropCotton}</td>
+                    <td className="py-4 text-center text-amber-600 font-bold text-base">{t.waterMod}</td>
+                    <td className="py-4 text-center text-slate-500">{t.mandiMarket}</td>
+                    <td className="py-4 text-center text-amber-600 font-medium">+20% Strain</td>
+                    <td className="py-4 text-right text-amber-600 font-bold text-sm">{t.statusRotation}</td>
+                  </tr>
+
+                  {/* WHEAT MATRIX ROW */}
+                  <tr className="hover:bg-slate-50 transition-colors font-medium">
+                    <td className="py-4 text-slate-900 text-base pl-2">{t.cropWheat}</td>
+                    <td className="py-4 text-center text-amber-600 font-bold text-base">{t.waterMod}</td>
+                    <td className="py-4 text-center text-slate-500">{t.mandiWheat}</td>
+                    <td className="py-4 text-center text-amber-600 font-medium">+25% Strain</td>
+                    <td className="py-4 text-right text-amber-600 font-bold text-sm">{t.recWheat}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            
+            <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 leading-normal font-medium">
+              {t.mandiNote}
+            </div>
+          </div>
+
+          {/* LOWER METADATA CONTAINER */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-200">
+            <div>
+              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerWells}</span>
+              <span className="text-xl font-extrabold text-slate-800 mt-1 block">
+                {optimizedData.metrics.wells} {t.footerNodes}
+              </span>
+            </div>
+            <div>
+              <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerEnv}</span>
+              <span className="text-sm text-slate-600 mt-1 block leading-relaxed font-medium">
+                {t.envText}
+              </span>
+            </div>
+          </div>
+
+        </div>
+      ) : (
+        <div className="text-center py-16 bg-white border-2 border-dashed border-slate-200 rounded-xl shadow-inner">
+          <p className="text-base font-medium text-slate-500 max-w-md mx-auto">{t.awaiting}</p>
+        </div>
+      )}
+    </div>
+  );
+}
