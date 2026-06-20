@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 import InputScreen from './components/InputScreen';
 
 export default function App() {
-  // Initial state is null so the landing page stays clean before execution
   const [optimizedData, setOptimizedData] = useState(null);
 
   const handleOptimizationSubmit = (payload) => {
-    // Dynamic math formula calculation: Base Region Load + Specific Crop Load Penalty
     const rawCalculatedLoad = payload.metrics.baseLoad + payload.cropMetrics.loadFactor;
-    // Cap the maximum possible load index at 100%
     const finalDynamicLoad = Math.min(rawCalculatedLoad, 100);
 
-    // Determine the reactive danger context classification
     let statusLabel = "MODERATE STRAIN";
     let statusColor = "border-amber-600 text-amber-700 bg-amber-50";
     if (finalDynamicLoad > 85) {
@@ -34,7 +30,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12">
       {/* HEADER SECTION */}
       <header className="mb-8 border-b border-slate-200 pb-6">
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-emerald-700 font-sans">
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700 font-sans">
           Aquifer.ai Groundwater Matrix
         </h1>
         <p className="text-sm md:text-base text-slate-600 font-medium mt-2">
@@ -61,13 +57,13 @@ export default function App() {
             </span>
           </div>
 
-          <h2 className="text-2xl md:text-3xl font-extrabold text-emerald-800 mb-6">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6">
             Aquifer Grid Matrix: {optimizedData.district}
           </h2>
 
-          {/* 🚨 CRITICAL SOLUTION FIX: BIGGER, BOLDER RECOMMENDATION CALLOUT BLOCK */}
-          <div className="p-6 bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl mb-8 shadow-sm">
-            <div className="text-xs font-bold text-emerald-800 uppercase tracking-widest mb-2">
+          {/* RECOMMENDATION CALLOUT BLOCK */}
+          <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl mb-8 shadow-sm">
+            <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">
               💡 Systemic AI Crop Directive
             </div>
             <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
@@ -93,10 +89,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* 📊 DYNAMIC COMPARISON BREAKDOWN MODULE */}
+          {/* DYNAMIC COMPARISON BREAKDOWN MODULE */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h4 className="text-sm font-bold text-emerald-800 uppercase tracking-wider">
+              <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider">
                 Systemic Node Comparison & Local Economic Realities
               </h4>
               <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded">
@@ -134,10 +130,10 @@ export default function App() {
                     <td className="py-4 text-slate-900 font-bold text-base pl-2">
                       Moong Mung Bean (Restorative)
                     </td>
-                    <td className="py-4 text-center text-emerald-600 font-bold text-base">Very Low</td>
-                    <td className="py-4 text-center text-emerald-700 font-extrabold text-base bg-emerald-50/50">+12% Premium Mandi Net Yield</td>
-                    <td className="py-4 text-center text-emerald-600 font-bold">+5% Strain</td>
-                    <td className="py-4 text-right text-emerald-700 font-bold text-sm">🎯 Highly Recommended</td>
+                    <td className="py-4 text-center text-blue-600 font-bold text-base">Very Low</td>
+                    <td className="py-4 text-center text-blue-700 font-extrabold text-base bg-blue-50/50">+12% Premium Mandi Net Yield</td>
+                    <td className="py-4 text-center text-blue-600 font-bold">+5% Strain</td>
+                    <td className="py-4 text-right text-blue-700 font-bold text-sm">🎯 Highly Recommended</td>
                   </tr>
 
                   {/* RESOURCE OPTIMIZED ALTERNATIVE OPTION 2 */}
@@ -145,10 +141,10 @@ export default function App() {
                     <td className="py-4 text-slate-900 text-base pl-2">
                       Maize (Resource Optimized)
                     </td>
-                    <td className="py-4 text-center text-teal-600 font-bold text-base">Low</td>
-                    <td className="py-4 text-center text-teal-700 font-bold text-base">+5% Equilibrium Match</td>
-                    <td className="py-4 text-center text-teal-600 font-medium">+15% Strain</td>
-                    <td className="py-4 text-right text-teal-700 font-bold text-sm">⚡ Balanced Rotation Vector</td>
+                    <td className="py-4 text-center text-sky-600 font-bold text-base">Low</td>
+                    <td className="py-4 text-center text-sky-700 font-bold text-base">+5% Equilibrium Match</td>
+                    <td className="py-4 text-center text-sky-600 font-medium">+15% Strain</td>
+                    <td className="py-4 text-right text-sky-700 font-bold text-sm">⚡ Balanced Rotation Vector</td>
                   </tr>
 
                   {/* STANDARD ALTERNATIVE OPTION 3 */}
@@ -182,14 +178,14 @@ export default function App() {
             <div>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">Collective Environmental Load</span>
               <span className="text-sm text-slate-600 mt-1 block leading-relaxed font-medium">
-                Grid vectors indicate resource tension caused by deploying <span className="text-emerald-700 font-bold">{optimizedData.crop}</span> configuration metrics into nested blocks.
+                Grid vectors indicate resource tension caused by deploying <span className="text-blue-700 font-bold">{optimizedData.crop}</span> configuration metrics into nested blocks.
               </span>
             </div>
           </div>
 
         </div>
       ) : (
-        /* SCREEN FOR INITIAL STATE AWAITING EXECUTION */
+        /* INITIAL STATE AWAITING EXECUTION */
         <div className="text-center py-16 bg-white border-2 border-dashed border-slate-200 rounded-xl shadow-inner">
           <p className="text-base font-medium text-slate-500 max-w-md mx-auto">
             Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping.
