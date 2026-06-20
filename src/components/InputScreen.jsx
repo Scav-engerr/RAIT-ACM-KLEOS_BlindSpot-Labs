@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// Maintained 8 Districts and 5 Target Input Crops Dataset
+// Maintained All 8 Districts and All 5 Target Input Crops Dataset
 const regionalDatabase = {
   districts: {
     // Punjab Grids
@@ -31,11 +31,12 @@ const inputTranslations = {
 };
 
 export default function InputScreen({ onOptimize, currentLang }) {
-  const [selectedState, setSelectedState] = React.useState('');
-  const [selectedDistrict, setSelectedDistrict] = React.useState('');
-  const [selectedCrop, setSelectedCrop] = React.useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [selectedCrop, setSelectedCrop] = useState('');
 
-  const it = inputTranslations[currentLang || 'en'];
+  const langKey = currentLang || 'en';
+  const it = inputTranslations[langKey] || inputTranslations.en;
 
   const handleOptimizeClick = () => {
     const metrics = regionalDatabase.districts[selectedDistrict];
@@ -81,4 +82,41 @@ export default function InputScreen({ onOptimize, currentLang }) {
             {selectedState === 'Punjab' && (
               <>
                 <option value="Ludhiana West">Ludhiana West</option>
-                <option value="Sangrur Central">Sangr
+                <option value="Sangrur Central">Sangrur Central</option>
+                <option value="Patiala East">Patiala East</option>
+                <option value="Firozpur Border Grid">Firozpur Border Grid</option>
+              </>
+            )}
+            {selectedState === 'Haryana' && (
+              <>
+                <option value="Kurukshetra North">Kurukshetra North</option>
+                <option value="Karnal Basin">Karnal Basin</option>
+                <option value="Kaithal Central">Kaithal Central</option>
+                <option value="Ambala Foothills">Ambala Foothills</option>
+              </>
+            )}
+          </select>
+        </div>
+
+        {/* CROP SELECTION */}
+        <div>
+          <label className="block text-sm md:text-base font-bold text-slate-700 mb-2">{it.labelCrop}</label>
+          <select value={selectedCrop} onChange={(e) => setSelectedCrop(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-300 text-slate-900 rounded-lg p-3 text-base font-medium focus:border-blue-500 focus:outline-none">
+            <option value="">{it.chooseCrop}</option>
+            <option value="Paddy / Rice">Paddy / Rice</option>
+            <option value="Sugarcane">Sugarcane</option>
+            <option value="Wheat (Standard Cycle)">Wheat (Standard Cycle)</option>
+            <option value="Maize (Resource Optimized)">Maize (Resource Optimized)</option>
+            <option value="Cotton">Cotton</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="pt-4 border-t border-slate-100 flex justify-end">
+        <button onClick={handleOptimizeClick} disabled={!selectedDistrict || !selectedCrop} className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-8 py-3.5 rounded-lg shadow-md transition-all duration-200 disabled:opacity-40">
+          {it.button}
+        </button>
+      </div>
+    </div>
+  );
+}
