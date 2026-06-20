@@ -30,13 +30,13 @@ const translations = {
     footerEnv: "Environmental Impact Assessment",
     envText: "Grid vectors indicate resource tension caused by deploying configuration metrics into regional nested blocks.",
     awaiting: "Awaiting parameters payload. Configure state, matrix grid, and intended crop options above to execute optimization mapping.",
-    // FinTech Additions
-    fintechTitle: "🏦 Institutional Credit Underwriting Ledger",
+    // FinTech Headings
+    fintechTitle: "🏦 Institutional Credit Underwriting Ledger Matrix",
     creditScoreLabel: "AI Eco-Credit Score (Collateral Base)",
     suretyLabel: "Bank Risk Tiering",
     waterSavedLabel: "Hydraulic Reserve Asset",
     cashPayoutLabel: "Projected ESG Subsidy Credit",
-    // Data Row Injectors
+    // Data Row Labels
     cropMoong: "Moong Mung Bean",
     cropMaize: "Maize (Resource Optimized)",
     cropSugarcane: "Sugarcane",
@@ -79,11 +79,13 @@ const translations = {
     footerEnv: "सामूहिक पर्यावरणीय भार",
     envText: "ग्रिड वेक्टर क्षेत्रीय ब्लॉकों में कॉन्फ़िगरेशन लागू करने के कारण होने वाले संसाधन तनाव को दर्शाते हैं।",
     awaiting: "पैरामीटर का इंतजार है। अनुकूलन मानचित्रण निष्पादित करने के लिए ऊपर राज्य, ग्रिड और फसल विकल्प चुनें।",
-    fintechTitle: "🏦 संस्थागत क्रेडिट हामीदारी बही (FinTech)",
+    // FinTech Headings
+    fintechTitle: "🏦 संस्थागत क्रेडिट हामीदारी एवं बहीखाता मैट्रिक्स",
     creditScoreLabel: "एआई इको-क्रेडिट स्कोर (डिजिटल संपार्श्विक)",
     suretyLabel: "बैंक जोखिम टियरिंग",
     waterSavedLabel: "जल परिसंपत्ति संचय",
     cashPayoutLabel: "अनुमानित ईएसजी सब्सिडी क्रेडिट",
+    // Data Row Labels
     cropMoong: "मूंग (साबुत दाल)",
     cropMaize: "मक्का (संसाधन अनुकूलित)",
     cropSugarcane: "गन्ना",
@@ -107,9 +109,8 @@ export default function App() {
 
   const t = translations[lang] || translations.en;
 
-  // 🧮 ANALYTICAL SCORING ENGINE
+  // 🧮 ANALYTICAL SCORING ENGINE (Varying on baseline stress + specific character hashing vectors)
   const calculateDynamicScore = (baseLoad, cropFactor, districtName) => {
-    // Add a unique "Geological Variance" based on the district name characters
     const geoVariance = (districtName.length % 7) * 4;
     const rawScore = 900 - ((baseLoad * 3.8) + (cropFactor * 5.2) + geoVariance);
     return Math.max(300, Math.min(880, Math.floor(rawScore)));
@@ -134,7 +135,7 @@ export default function App() {
       statusColor = "border-red-600 text-red-700 bg-red-50";
     }
 
-    // Generate specific scores for ALL crops for this district to populate the table
+    // Process all relative variations for background spreadsheet analytics
     const districtScores = {
       paddy: calculateDynamicScore(payload.metrics.baseLoad, 50, payload.district),
       moong: calculateDynamicScore(payload.metrics.baseLoad, 5, payload.district),
@@ -167,20 +168,24 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12 font-sans">
       
+      {/* LANGUAGE SELECT MATRIX */}
       <div className="flex justify-end gap-2 mb-4">
         <button onClick={() => setLang('en')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'en' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>English</button>
         <button onClick={() => setLang('hi')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'hi' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>हिन्दी</button>
       </div>
 
+      {/* PRIMARY APPLICATION BRAND BAR */}
       <header className="mb-8 border-b border-slate-200 pb-6">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700">{t.title}</h1>
         <p className="text-sm md:text-base text-slate-600 font-medium mt-2">{t.subtitle}</p>
       </header>
 
+      {/* INPUT SYSTEM MATRIX */}
       <div className="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <InputScreen onOptimize={handleOptimizationSubmit} currentLang={lang} />
       </div>
 
+      {/* RENDER ENGINE OUTPUT */}
       {optimizedData ? (
         <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-md">
           
@@ -193,6 +198,7 @@ export default function App() {
 
           <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6">{t.gridMatrix}: {optimizedData.district}</h2>
 
+          {/* AI ADVISORY ROW */}
           <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl mb-6 shadow-sm">
             <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">{t.aiDirective}</div>
             <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
@@ -200,35 +206,52 @@ export default function App() {
             </div>
           </div>
 
-          {/* 🏦 ADVANCED FINTECH SCORECARD (Neutral Analytic Neutrality) */}
+          {/* 🏦 INSTITUTIONAL CREDIT & INCENTIVE LEDGER (Split Logic Panel) */}
           <div className="mb-8 bg-slate-900 text-white rounded-xl p-6 shadow-xl border border-slate-800">
             <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-5">{t.fintechTitle}</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.creditScoreLabel}</span>
-                <span className={`text-3xl font-black mt-2 block ${optimizedData.activeScore > 750 ? 'text-emerald-400' : optimizedData.activeScore > 650 ? 'text-blue-400' : 'text-orange-400'}`}>
-                  {optimizedData.activeScore} <span className="text-xs font-normal text-slate-400">/ 900</span>
-                </span>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-slate-800">
+              
+              {/* LEFT: CURRENT REAL-TIME RETAINED ACCOUNT AS-IS PROFILE */}
+              <div className="pb-6 lg:pb-0 lg:pr-6">
+                <span className="text-xs font-bold text-red-400 uppercase tracking-wider block mb-3">📍 Current Farm State Assessment</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-slate-800/60 p-4 rounded-lg border border-slate-700/50">
+                    <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.creditScoreLabel}</span>
+                    <span className={`text-3xl font-black mt-2 block ${optimizedData.activeScore > 750 ? 'text-emerald-400' : optimizedData.activeScore > 650 ? 'text-blue-400' : 'text-orange-400'}`}>
+                      {optimizedData.activeScore} <span className="text-xs font-normal text-slate-500">/ 900</span>
+                    </span>
+                  </div>
+                  <div className="bg-slate-800/60 p-4 rounded-lg border border-slate-700/50 flex flex-col justify-between">
+                    <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.suretyLabel}</span>
+                    <span className={`text-xs px-2 py-2 rounded font-bold uppercase tracking-wider border text-center mt-2 block ${optimizedData.tier.color}`}>
+                      {optimizedData.tier.label}
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 flex flex-col justify-between">
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.suretyLabel}</span>
-                <span className={`text-xs px-2.5 py-2 rounded font-bold uppercase tracking-wider border text-center mt-2 block ${optimizedData.tier.color}`}>
-                  {optimizedData.tier.label}
-                </span>
+
+              {/* RIGHT: TRANSITIONAL ADVANTAGE FROM SELECTION MODIFICATION */}
+              <div className="pt-6 lg:pt-0 lg:pl-6">
+                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block mb-3">✨ Projected Yield From AI Transition (Moong Alternative)</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-slate-800/60 p-4 rounded-lg border border-slate-700/50">
+                    <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.waterSavedLabel}</span>
+                    <span className="text-2xl font-black text-blue-400 mt-2 block">{optimizedData.waterSavedLiters.toLocaleString()} L</span>
+                    <span className="text-[10px] text-slate-500 block mt-0.5">Asset Margin Created</span>
+                  </div>
+                  <div className="bg-slate-800/60 p-4 rounded-lg border border-slate-700/50 bg-gradient-to-br from-slate-800/60 to-emerald-950/20">
+                    <span className="block text-xs text-emerald-400 font-bold uppercase tracking-wider">{t.cashPayoutLabel}</span>
+                    <span className="text-3xl font-black text-emerald-400 mt-2 block">₹{optimizedData.cashPayout.toLocaleString()}</span>
+                    <span className="text-[10px] text-slate-500 block mt-0.5">Direct Net Worth Addition</span>
+                  </div>
+                </div>
               </div>
-              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.waterSavedLabel}</span>
-                <span className="text-2xl font-black text-blue-400 mt-2 block">{optimizedData.waterSavedLiters.toLocaleString()} L</span>
-                <span className="text-xs text-slate-500 block mt-0.5">Hydraulic Asset / H</span>
-              </div>
-              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 bg-gradient-to-br from-slate-800 to-emerald-950/30">
-                <span className="block text-xs text-emerald-400 font-bold uppercase tracking-wider">{t.cashPayoutLabel}</span>
-                <span className="text-3xl font-black text-emerald-400 mt-2 block">₹{optimizedData.cashPayout.toLocaleString()}</span>
-                <span className="text-xs text-slate-400 block mt-0.5">Institutional Green Grant</span>
-              </div>
+
             </div>
           </div>
 
+          {/* DYNAMIC PROGRESS RADIAL BAR */}
           <div className="mb-8 bg-slate-100 p-5 rounded-xl border border-slate-200">
             <div className="flex justify-between text-sm md:text-base font-bold text-slate-700 mb-2">
               <span>{t.indexLabel} ({optimizedData.metrics.soil})</span>
@@ -241,7 +264,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* DYNAMIC SYSTEM COMPARISON MATRIX (Shows individual scores for all options) */}
+          {/* ALTERNATIVE CREDIT IMPACT SPREADSHEET */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm">
             <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider mb-4">Systemic Alternative Credit Analysis</h4>
             <div className="overflow-x-auto">
@@ -256,7 +279,7 @@ export default function App() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {/* Current Active User Selection Row */}
+                  {/* Selected Target Baseline */}
                   <tr className="bg-slate-50 font-medium">
                     <td className="py-4 font-bold flex items-center gap-2 pl-2">
                       {optimizedData.crop} <span className="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">{t.currentBadge}</span>
@@ -266,7 +289,7 @@ export default function App() {
                     <td className="py-4 text-center font-bold text-slate-600">+{optimizedData.cropMetrics.loadFactor}%</td>
                     <td className="py-4 text-right text-xs uppercase font-bold">{optimizedData.calculatedLoad > 85 ? t.riskHigh : "STANDARD"}</td>
                   </tr>
-                  {/* Moong AI Target */}
+                  {/* Optimal Target */}
                   <tr className="bg-blue-50/50">
                     <td className="py-4 font-bold text-blue-900 pl-2">{t.cropMoong} <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full">{t.recBadge}</span></td>
                     <td className="py-4 text-center font-black text-emerald-600">{optimizedData.districtScores.moong}</td>
@@ -274,7 +297,7 @@ export default function App() {
                     <td className="py-4 text-center font-bold text-blue-700">+5%</td>
                     <td className="py-4 text-right text-emerald-600 text-xs font-bold">{t.recMoong}</td>
                   </tr>
-                  {/* Other Alternates with District-Specific calculated scores */}
+                  {/* Rotational Alternatives */}
                   <tr className="hover:bg-slate-50">
                     <td className="py-4 pl-2">{t.cropMaize}</td>
                     <td className="py-4 text-center font-black text-blue-500">{optimizedData.districtScores.maize}</td>
@@ -302,6 +325,7 @@ export default function App() {
             <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 font-medium">{t.mandiNote}</div>
           </div>
 
+          {/* LOWER RUNTIME FOOTER METADATA */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-200">
             <div><span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerWells}</span><span className="text-xl font-extrabold text-slate-800 mt-1 block">{optimizedData.metrics.wells} {t.footerNodes}</span></div>
             <div><span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerEnv}</span><span className="text-sm text-slate-600 mt-1 block leading-relaxed font-medium">{t.envText}</span></div>
