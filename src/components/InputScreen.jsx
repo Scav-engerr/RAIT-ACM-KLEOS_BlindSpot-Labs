@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 
+// Expanded Local Data Matrix covering major crop and district vectors
 const regionalDatabase = {
   districts: {
+    // Punjab Grids
     "Ludhiana West": { soil: "Alluvial Matrix", wells: 1420, baseLoad: 50 },
     "Sangrur Central": { soil: "Heavy Clay Loam", wells: 1840, baseLoad: 55 },
+    "Patiala East": { soil: "Silt Alluvium", wells: 1650, baseLoad: 52 },
+    "Firozpur Border Grid": { soil: "Sandy Loam Matrix", wells: 1110, baseLoad: 42 },
+    
+    // Haryana Grids
     "Kurukshetra North": { soil: "Sandy Loam Matrix", wells: 980, baseLoad: 45 },
-    "Karnal Basin": { soil: "Alluvial Silt", wells: 1120, baseLoad: 48 }
+    "Karnal Basin": { soil: "Alluvial Silt", wells: 1120, baseLoad: 48 },
+    "Kaithal Central": { soil: "Clay Loam", wells: 1340, baseLoad: 51 },
+    "Ambala Foothills": { soil: "Loamy Sand", wells: 850, baseLoad: 38 }
   },
   crops: {
     "Paddy / Rice": { waterDemand: "Critical / Flood", loadFactor: 50 },
-    "Sugarcane": { waterDemand: "High Perennial", loadFactor: 40 },
-    "Cotton": { waterDemand: "Moderate Seasonal", loadFactor: 25 }
+    "Sugarcane": { waterDemand: "High Perennial", loadFactor: 42 },
+    "Wheat (Standard Cycle)": { waterDemand: "Moderate Seasonal", loadFactor: 25 },
+    "Maize (Resource Optimized)": { waterDemand: "Low Deficit", loadFactor: 15 },
+    "Cotton": { waterDemand: "Moderate Seasonal", loadFactor: 20 }
   }
 };
 
@@ -29,7 +39,7 @@ export default function InputScreen({ onOptimize }) {
       return;
     }
 
-    const recommendationText = `To prevent complete aquifer collapse in ${selectedDistrict}, the systemic directive recommends transitioning from high-volume ${selectedCrop} flood irrigation over to leguminous Moong (Mung Bean). This action reduces critical cluster extraction rates immediately while securing a localized net profit increase at regional mandis.`;
+    const recommendationText = `To prevent complete aquifer collapse in ${selectedDistrict}, the systemic directive recommends transitioning from high-volume ${selectedCrop} configurations over to leguminous Moong (Mung Bean). This action reduces critical cluster extraction rates immediately while securing a localized net profit increase at regional mandis.`;
 
     onOptimize({
       district: selectedDistrict,
@@ -79,12 +89,16 @@ export default function InputScreen({ onOptimize }) {
               <>
                 <option value="Ludhiana West">Ludhiana West</option>
                 <option value="Sangrur Central">Sangrur Central</option>
+                <option value="Patiala East">Patiala East</option>
+                <option value="Firozpur Border Grid">Firozpur Border Grid</option>
               </>
             )}
             {selectedState === 'Haryana' && (
               <>
                 <option value="Kurukshetra North">Kurukshetra North</option>
                 <option value="Karnal Basin">Karnal Basin</option>
+                <option value="Kaithal Central">Kaithal Central</option>
+                <option value="Ambala Foothills">Ambala Foothills</option>
               </>
             )}
           </select>
@@ -103,6 +117,8 @@ export default function InputScreen({ onOptimize }) {
             <option value="">-- Choose Target Crop --</option>
             <option value="Paddy / Rice">Paddy / Rice</option>
             <option value="Sugarcane">Sugarcane</option>
+            <option value="Wheat (Standard Cycle)">Wheat (Standard Cycle)</option>
+            <option value="Maize (Resource Optimized)">Maize (Resource Optimized)</option>
             <option value="Cotton">Cotton</option>
           </select>
         </div>
