@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import InputScreen from './components/InputScreen';
 
+// 🌐 TRANSLATION DICTIONARY
 const translations = {
   en: {
     title: "Aquifer.ai Groundwater Matrix",
@@ -45,10 +46,11 @@ const translations = {
     mandiWheat: "Equivalent Market Yield",
     statusHighStrain: "❌ High Strain Vector",
     statusRotation: "⚠️ High Rotation Variable",
-    // Eco Features
-    ecoTitle: "🌱 Dynamic Eco-Incentive Estimator",
-    ecoSaved: "Estimated Water Saved",
-    ecoPayout: "Government ESG Subsidy Payout"
+    // FinTech Additions
+    fintechTitle: "🏦 Bank Alternative Underwriting Ledger",
+    creditScoreLabel: "AI Eco-Credit Score (Collateral Base)",
+    suretyLabel: "Bank Loan Surety Rating",
+    waterSavedLabel: "Hydraulic Asset Reserve"
   },
   hi: {
     title: "Aquifer.ai भूजल मैट्रिक्स",
@@ -92,10 +94,11 @@ const translations = {
     mandiWheat: "समतुल्य बाजार उपज",
     statusHighStrain: "❌ उच्च तनाव वेक्टर",
     statusRotation: "⚠️ उच्च रोटेशन चर",
-    // Eco Features
-    ecoTitle: "🌱 गतिशील पर्यावरण-प्रोत्साहन कैलकुलेटर",
-    ecoSaved: "अनुमानित जल बचत",
-    ecoPayout: "सरकारी पर्यावरण-सब्सिडी भुगतान"
+    // FinTech Additions
+    fintechTitle: "🏦 बैंक वैकल्पिक हामीदारी बही (FinTech)",
+    creditScoreLabel: "एआई इको-क्रेडिट स्कोर (डिजिटल संपार्श्विक)",
+    suretyLabel: "बैंक ऋण सुरक्षा रेटिंग",
+    waterSavedLabel: "जल परिसंपत्ति संचय"
   }
 };
 
@@ -111,6 +114,7 @@ export default function App() {
 
     let statusLabel = "MODERATE STRAIN";
     let statusColor = "border-amber-600 text-amber-700 bg-amber-50";
+    
     if (finalDynamicLoad > 85) {
       statusLabel = "CRITICAL: COLLAPSE RISK DETECTED";
       statusColor = "border-red-600 text-red-700 bg-red-50";
@@ -119,10 +123,29 @@ export default function App() {
       statusColor = "border-orange-600 text-orange-700 bg-orange-50";
     }
 
-    // Dynamic eco metrics calculations based on transition to Moong (which has loadFactor of 5)
+    // 🏦 FINTECH CALCULATIONS
+    // Calculate difference between chosen crop strain and optimized baseline (Moong factor = 5)
     const loadSaved = Math.max(0, payload.cropMetrics.loadFactor - 5);
-    const waterSavedLiters = loadSaved * 12500; // 12,500L saved per factor reduction
-    const ecoCreditsDividend = Math.floor(waterSavedLiters * 0.18); // ₹0.18 incentive per liter
+    const waterSavedLiters = loadSaved * 12500; 
+
+    // Dynamic Banking Underwriting Logic
+    let creditScore = 620; // Default baseline score
+    let suretyRating = "POOR / HIGH DEFAULT RISK";
+    let suretyColor = "text-red-600 bg-red-50 border-red-200";
+
+    if (waterSavedLiters > 40000) {
+      creditScore = 840;
+      suretyRating = "AAA+ / PRE-APPROVED EXCELLENT";
+      suretyColor = "text-emerald-700 bg-emerald-50 border-emerald-200";
+    } else if (waterSavedLiters > 15000) {
+      creditScore = 740;
+      suretyRating = "AA / HIGH ELIGIBILITY PRIME";
+      suretyColor = "text-blue-700 bg-blue-50 border-blue-200";
+    } else if (waterSavedLiters > 0) {
+      creditScore = 680;
+      suretyRating = "B+ / CONDITIONAL ACCEPTANCE";
+      suretyColor = "text-amber-700 bg-amber-50 border-amber-200";
+    }
 
     setOptimizedData({
       ...payload,
@@ -130,30 +153,33 @@ export default function App() {
       statusLabel: statusLabel,
       statusColor: statusColor,
       waterSavedLiters,
-      ecoCreditsDividend
+      creditScore,
+      suretyRating,
+      suretyColor
     });
   };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6 md:p-12 font-sans">
+      
       {/* LANGUAGE SELECTOR */}
       <div className="flex justify-end gap-2 mb-4">
         <button onClick={() => setLang('en')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'en' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>English</button>
         <button onClick={() => setLang('hi')} className={`px-4 py-1.5 text-sm font-bold rounded-lg border transition-all ${lang === 'hi' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-50'}`}>हिन्दी</button>
       </div>
 
-      {/* APP TITLE BAR */}
+      {/* HEADER */}
       <header className="mb-8 border-b border-slate-200 pb-6">
         <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-blue-700">{t.title}</h1>
         <p className="text-sm md:text-base text-slate-600 font-medium mt-2">{t.subtitle}</p>
       </header>
 
-      {/* FORM INTERFACE CONTAINER */}
+      {/* INPUT FORM CONTAINER */}
       <div className="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
         <InputScreen onOptimize={handleOptimizationSubmit} currentLang={lang} />
       </div>
 
-      {/* MATRIX RESPONSE LAYOUT */}
+      {/* DYNAMIC RESPONSE PANELS */}
       {optimizedData ? (
         <div className="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-md">
           
@@ -166,7 +192,7 @@ export default function App() {
 
           <h2 className="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6">{t.gridMatrix}: {optimizedData.district}</h2>
 
-          {/* AI DIRECTIVE PANEL */}
+          {/* AI ADVISORY DIRECTIVE */}
           <div className="p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-xl mb-6 shadow-sm">
             <div className="text-xs font-bold text-blue-800 uppercase tracking-widest mb-2">{t.aiDirective}</div>
             <div className="text-xl md:text-2xl font-bold text-slate-900 leading-snug">
@@ -174,25 +200,41 @@ export default function App() {
             </div>
           </div>
 
-          {/* ⭐ SIMPLIFIED INNOVATIVE EXTRA: ECO-CREDIT ESTIMATOR BAR */}
-          {optimizedData.waterSavedLiters > 0 && (
-            <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 bg-emerald-50 border border-emerald-200 rounded-xl p-5 shadow-inner animate-fadeIn">
-              <div>
-                <span className="block text-xs font-bold text-emerald-800 uppercase tracking-wider">{t.ecoTitle}</span>
-                <span className="text-lg font-extrabold text-slate-800 mt-1 block">
-                  {t.ecoSaved}: <span className="text-emerald-600 font-black">{optimizedData.waterSavedLiters.toLocaleString()} L/Hectare</span>
+          {/* 🏦 NEW FINTECH BLOCK: BANK LOAN UNDERWRITING SCORECARD */}
+          <div className="mb-8 bg-slate-900 text-white rounded-xl p-6 shadow-xl border border-slate-800">
+            <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">{t.fintechTitle}</div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Eco-Credit Score Badge */}
+              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.creditScoreLabel}</span>
+                <span className={`text-3xl font-black mt-2 block ${optimizedData.creditScore > 750 ? 'text-emerald-400' : optimizedData.creditScore > 650 ? 'text-blue-400' : 'text-red-400'}`}>
+                  {optimizedData.creditScore} <span className="text-xs font-normal text-slate-400">/ 900</span>
                 </span>
               </div>
-              <div className="sm:text-right flex flex-col justify-center">
-                <span className="block text-xs font-bold text-emerald-700 uppercase tracking-wider">{t.ecoPayout}</span>
-                <span className="text-2xl font-black text-emerald-700 mt-0.5 block">
-                  + ₹{optimizedData.ecoCreditsDividend.toLocaleString()}
-                </span>
-              </div>
-            </div>
-          )}
 
-          {/* WATER DEPLETION SLIDER STATUS */}
+              {/* Bank Surety Rating Card */}
+              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 flex flex-col justify-between">
+                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.suretyLabel}</span>
+                <span className={`text-sm px-2.5 py-1 rounded font-bold uppercase tracking-wide border text-center mt-2 ${optimizedData.suretyColor}`}>
+                  {optimizedData.suretyRating}
+                </span>
+              </div>
+
+              {/* Accumulated Water Reserve Collateral */}
+              <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">{t.waterSavedLabel}</span>
+                <span className="text-xl font-black text-emerald-400 mt-2 block">
+                  {optimizedData.waterSavedLiters.toLocaleString()} Liters/H
+                </span>
+                <span className="text-xs text-slate-400 block mt-0.5">Asset Margin Created</span>
+              </div>
+
+            </div>
+          </div>
+
+          {/* WATER RECOVERY SLIDER */}
           <div className="mb-8 bg-slate-100 p-5 rounded-xl border border-slate-200">
             <div className="flex justify-between text-sm md:text-base font-bold text-slate-700 mb-2">
               <span>{t.indexLabel} ({optimizedData.metrics.soil})</span>
@@ -210,12 +252,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* COMPLETE COMPARISON MATRIX TABLE */}
+          {/* SYSTEM COMPARISON MATRIX TABLE */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider">Systemic Comparison Matrix</h4>
-            </div>
-
+            <h4 className="text-sm font-bold text-blue-800 uppercase tracking-wider mb-4">Systemic Comparison Matrix</h4>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm md:text-base text-slate-700 min-w-[600px]">
                 <thead>
@@ -229,7 +268,7 @@ export default function App() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   
-                  {/* USER INTERACTION CURRENT CROP ROW */}
+                  {/* Current Active Selection Row */}
                   <tr className="bg-red-50/80 text-slate-900 font-medium">
                     <td className="py-4 font-bold flex items-center gap-2 text-base pl-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
@@ -241,7 +280,7 @@ export default function App() {
                     <td className="py-4 text-right font-bold text-red-600 text-sm">{t.riskHigh}</td>
                   </tr>
 
-                  {/* ⭐ HIGHLIGHTED AI RECOMMENDED TARGET ALTERNATIVE ROW */}
+                  {/* AI Optimal Directive Alternative Target Row */}
                   <tr className="bg-blue-50 border-y-2 border-blue-200 text-slate-900 font-medium">
                     <td className="py-4 text-blue-900 font-extrabold text-base pl-2 flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
@@ -253,7 +292,7 @@ export default function App() {
                     <td className="py-4 text-right text-blue-800 font-extrabold text-sm">{t.recMoong}</td>
                   </tr>
 
-                  {/* MAIZE MATRIX ROW */}
+                  {/* Other Array Options */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
                     <td className="py-4 text-slate-900 text-base pl-2">{t.cropMaize}</td>
                     <td className="py-4 text-center text-sky-600 font-bold text-base">{t.waterLow}</td>
@@ -262,7 +301,6 @@ export default function App() {
                     <td className="py-4 text-right text-sky-700 font-bold text-sm">{t.recMaize}</td>
                   </tr>
 
-                  {/* SUGARCANE MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
                     <td className="py-4 text-slate-900 text-base pl-2">{t.cropSugarcane}</td>
                     <td className="py-4 text-center text-amber-700 font-bold text-base">{t.waterHigh}</td>
@@ -271,7 +309,6 @@ export default function App() {
                     <td className="py-4 text-right text-amber-700 font-bold text-sm">{t.statusHighStrain}</td>
                   </tr>
 
-                  {/* COTTON MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
                     <td className="py-4 text-slate-900 text-base pl-2">{t.cropCotton}</td>
                     <td className="py-4 text-center text-amber-600 font-bold text-base">{t.waterMod}</td>
@@ -280,7 +317,6 @@ export default function App() {
                     <td className="py-4 text-right text-amber-600 font-bold text-sm">{t.statusRotation}</td>
                   </tr>
 
-                  {/* WHEAT MATRIX ROW */}
                   <tr className="hover:bg-slate-50 transition-colors font-medium">
                     <td className="py-4 text-slate-900 text-base pl-2">{t.cropWheat}</td>
                     <td className="py-4 text-center text-amber-600 font-bold text-base">{t.waterMod}</td>
@@ -292,13 +328,12 @@ export default function App() {
                 </tbody>
               </table>
             </div>
-            
-            <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 leading-normal font-medium">
+            <div className="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 loading-normal font-medium">
               {t.mandiNote}
             </div>
           </div>
 
-          {/* LOWER METADATA CONTAINER */}
+          {/* LOWER META BASE */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 pt-6 border-t border-slate-200">
             <div>
               <span className="block text-xs font-bold text-slate-400 uppercase tracking-wider">{t.footerWells}</span>
@@ -323,4 +358,3 @@ export default function App() {
     </div>
   );
 }
-
