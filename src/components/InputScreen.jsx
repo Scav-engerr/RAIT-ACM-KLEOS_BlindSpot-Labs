@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
-// Expanded Local Data Matrix covering major crop and district vectors
+// Restored Local Data Matrix matching an immediate 5km neighborhood scale
 const regionalDatabase = {
   districts: {
     // Punjab Grids
-    "Ludhiana West": { soil: "Alluvial Matrix", wells: 1420, baseLoad: 50 },
-    "Sangrur Central": { soil: "Heavy Clay Loam", wells: 1840, baseLoad: 55 },
-    "Patiala East": { soil: "Silt Alluvium", wells: 1650, baseLoad: 52 },
-    "Firozpur Border Grid": { soil: "Sandy Loam Matrix", wells: 1110, baseLoad: 42 },
+    "Ludhiana West": { soil: "Alluvial Matrix", wells: 38, baseLoad: 50 },
+    "Sangrur Central": { soil: "Heavy Clay Loam", wells: 52, baseLoad: 55 },
+    "Patiala East": { soil: "Silt Alluvium", wells: 44, baseLoad: 52 },
+    "Firozpur Border Grid": { soil: "Sandy Loam Matrix", wells: 29, baseLoad: 42 },
     
     // Haryana Grids
-    "Kurukshetra North": { soil: "Sandy Loam Matrix", wells: 980, baseLoad: 45 },
-    "Karnal Basin": { soil: "Alluvial Silt", wells: 1120, baseLoad: 48 },
-    "Kaithal Central": { soil: "Clay Loam", wells: 1340, baseLoad: 51 },
-    "Ambala Foothills": { soil: "Loamy Sand", wells: 850, baseLoad: 38 }
+    "Kurukshetra North": { soil: "Sandy Loam Matrix", wells: 31, baseLoad: 45 },
+    "Karnal Basin": { soil: "Alluvial Silt", wells: 35, baseLoad: 48 },
+    "Kaithal Central": { soil: "Clay Loam", wells: 48, baseLoad: 51 },
+    "Ambala Foothills": { soil: "Loamy Sand", wells: 26, baseLoad: 38 }
   },
   crops: {
     "Paddy / Rice": { waterDemand: "Critical / Flood", loadFactor: 50 },
@@ -33,13 +33,12 @@ export default function InputScreen({ onOptimize }) {
     const metrics = regionalDatabase.districts[selectedDistrict];
     const cropMetrics = regionalDatabase.crops[selectedCrop];
 
-    // Safety guard clause: Only run if data exists to prevent crashes
     if (!metrics || !cropMetrics) {
       console.warn("Missing metrics for selection:", selectedDistrict, selectedCrop);
       return;
     }
 
-    const recommendationText = `To prevent complete aquifer collapse in ${selectedDistrict}, the systemic directive recommends transitioning from high-volume ${selectedCrop} configurations over to leguminous Moong (Mung Bean). This action reduces critical cluster extraction rates immediately while securing a localized net profit increase at regional mandis.`;
+    const recommendationText = `To prevent complete aquifer collapse in ${selectedDistrict}, the systemic directive recommends transitioning from high-volume ${selectedCrop} configurations over to leguminous Moong (Mung Bean). This action reduces critical cluster extraction rates immediately while securing a localized net profit increase at regional mandis Simon.`;
 
     onOptimize({
       district: selectedDistrict,
